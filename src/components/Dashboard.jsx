@@ -2,9 +2,9 @@ import { useState, useEffect } from 'react'
 
 // ⚙️ Configure seus links de checkout da Kiwify aqui
 const CHECKOUT_URLS = {
-  nutrition:    'https://pay.kiwify.com.br/SEU-LINK-NUTRICAO',
-  sleep:        'https://pay.kiwify.com.br/SEU-LINK-SONO',
-  presidential: 'https://pay.kiwify.com.br/SEU-LINK-PRESIDENCIAL',
+  nutrition:    'https://pay.kiwify.com/mHGhge4',
+  sleep:        'https://pay.kiwify.com/4L052NZ',
+  presidential: 'https://pay.kiwify.com/UN2kMlg',
 }
 
 const typeColors = {

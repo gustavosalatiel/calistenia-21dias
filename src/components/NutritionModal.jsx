@@ -190,20 +190,30 @@ function MealSection({ mealKey, meal }) {
         ))}
       </div>
 
-      {/* Ingredient chips */}
+      {/* Ingredient section */}
       {meal.ingredientes && meal.ingredientes.length > 0 && (
-        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '5px' }}>
-          {meal.ingredientes.map((ing, i) => (
-            <span key={i} style={{
-              backgroundColor: '#252825',
-              border: '1px solid #2A302A',
-              borderRadius: '20px',
-              padding: '3px 9px',
-              fontFamily: '"Share Tech Mono", monospace',
-              fontSize: '9px',
-              color: '#8DA38D'
-            }}>{ing}</span>
-          ))}
+        <div style={{ borderTop: '1px solid #2A302A', paddingTop: '12px', marginTop: '4px' }}>
+          <div style={{ fontFamily: '"Share Tech Mono", monospace', fontSize: '9px', color: '#4B5E4B', letterSpacing: '3px', marginBottom: '10px' }}>🥦 INGREDIENTES</div>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
+            {meal.ingredientes.map((ing, i) => (
+              <span key={i} style={{
+                backgroundColor: '#0F1A0F',
+                border: '1px solid #3A5A3A',
+                borderRadius: '8px',
+                padding: '8px 14px',
+                fontFamily: '"Share Tech Mono", monospace',
+                fontSize: '13px',
+                color: '#C8E6C8',
+                letterSpacing: '0.5px',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '6px'
+              }}>
+                <span style={{ color: '#4ade80', fontSize: '10px' }}>▸</span>
+                {ing}
+              </span>
+            ))}
+          </div>
         </div>
       )}
     </div>

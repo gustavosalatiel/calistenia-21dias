@@ -44,6 +44,8 @@ export default function MayaChat({ onClose, userEmail }) {
   const windowWidth = useWindowWidth()
   const isDesktop = windowWidth >= 768
 
+  const WELCOME_PLAYED_KEY = 'maya_welcome_played'
+
   const [messages, setMessages] = useState(() => {
     try {
       const saved = localStorage.getItem(STORAGE_KEY)
@@ -54,39 +56,56 @@ export default function MayaChat({ onClose, userEmail }) {
   const [input, setInput] = useState('')
   const [loading, setLoading] = useState(false)
   const [imgOk, setImgOk] = useState(true)
+  const [audioPlaying, setAudioPlaying] = useState(false)
+  const [audioDone, setAudioDone] = useState(false)
   const messagesEndRef = useRef(null)
   const audioRef = useRef(null)
-  const hasPlayedWelcome = useRef(false)
 
-  // Play welcome audio once on open
+  // Play welcome audio only the FIRST time ever (tracked in localStorage)
   useEffect(() => {
-    if (hasPlayedWelcome.current) return
-    hasPlayedWelcome.current = true
-
+    const alreadyPlayed = localStorage.getItem(WELCOME_PLAYED_KEY)
     const audio = new Audio('/maya-bienvenido.mp3')
     audio.volume = 1
     audioRef.current = audio
-    audio.play().catch(() => {
-      // Autoplay blocked — play on first user interaction
-      const unlock = () => {
-        audio.play().catch(() => {})
-        document.removeEventListener('click', unlock)
-        document.removeEventListener('touchstart', unlock)
-      }
-      document.addEventListener('click', unlock)
-      document.addEventListener('touchstart', unlock)
-    })
-  }, [])
 
-  // Stop audio on unmount
-  useEffect(() => {
+    audio.addEventListener('play',  () => setAudioPlaying(true))
+    audio.addEventListener('pause', () => setAudioPlaying(false))
+    audio.addEventListener('ended', () => { setAudioPlaying(false); setAudioDone(true) })
+
+    if (!alreadyPlayed) {
+      localStorage.setItem(WELCOME_PLAYED_KEY, '1')
+      audio.play().catch(() => {
+        // Autoplay blocked — play on first interaction
+        const unlock = () => {
+          audio.play().catch(() => {})
+          document.removeEventListener('click', unlock)
+          document.removeEventListener('touchstart', unlock)
+        }
+        document.addEventListener('click', unlock)
+        document.addEventListener('touchstart', unlock)
+      })
+    }
+
     return () => {
-      if (audioRef.current) {
-        audioRef.current.pause()
-        audioRef.current.currentTime = 0
-      }
+      audio.pause()
+      audio.src = ''
     }
   }, [])
+
+  const handleToggleAudio = () => {
+    const audio = audioRef.current
+    if (!audio) return
+    if (audioPlaying) {
+      audio.pause()
+    } else {
+      // If ended, restart from beginning
+      if (audioDone || audio.ended) {
+        audio.currentTime = 0
+        setAudioDone(false)
+      }
+      audio.play().catch(() => {})
+    }
+  }
 
   // Welcome message on first open
   useEffect(() => {
@@ -267,7 +286,32 @@ export default function MayaChat({ onClose, userEmail }) {
             </div>
           </div>
 
-          <div style={{ display: 'flex', gap: '6px' }}>
+          <div style={{ display: 'flex', gap: '6px', alignItems: 'center' }}>
+            {/* Audio play/pause button */}
+            <button
+              onClick={handleToggleAudio}
+              title={audioPlaying ? 'Pausar áudio' : 'Reproduzir áudio de boas-vindas'}
+              style={{
+                backgroundColor: audioPlaying ? 'rgba(75,94,75,0.2)' : '#1A1D1A',
+                border: `1px solid ${audioPlaying ? '#4B5E4B' : '#2A302A'}`,
+                borderRadius: '6px',
+                padding: '6px 10px',
+                cursor: 'pointer',
+                display: 'flex', alignItems: 'center', gap: '5px',
+                transition: 'all 0.2s',
+              }}
+            >
+              <span style={{ fontSize: '13px' }}>{audioPlaying ? '⏸' : '▶'}</span>
+              <span style={{
+                fontFamily: '"Share Tech Mono", monospace',
+                fontSize: '8px',
+                color: audioPlaying ? '#4ade80' : '#4B5E4B',
+                letterSpacing: '0.5px',
+              }}>
+                {audioPlaying ? 'PAUSAR' : 'ÁUDIO'}
+              </span>
+            </button>
+
             <button
               onClick={handleClearHistory}
               title="Limpiar historial"

@@ -1,0 +1,631 @@
+{
+  "_meta": {
+    "source": "https://calistenia-app.netlify.app/assets/index-CNUkTO1P.js",
+    "extracted": "2026-03-21",
+    "app_name": "Desafío 21 Días: Calistenia Militar"
+  },
+
+  "workout_program": {
+    "total_days": 21,
+    "days": [
+      {
+        "day": 1,
+        "operation_code": "FECHA_OPERATIVA_01",
+        "protocol_name": "PROTOCOLO ESTÁNDAR",
+        "mission_report": "Ejecutar procedimiento operativo estándar para activar todo el cuerpo y aprender la técnica básica.",
+        "duration_min": 30,
+        "training_type": "FUERZA",
+        "difficulty": 1,
+        "exercises": [
+          { "obj": "OBJ 01", "name": "Bodyweight Squat", "description": "Pies al ancho de hombros, flexiona caderas y rodillas como si fueras a sentarte, manteniendo el pecho arriba y el peso en los talones.", "series": 3, "reps": "10–12", "rest_seconds": 45, "tags": ["piernas","glúteos"], "videoUrl": "https://res.cloudinary.com/dloltdnrm/video/upload/v1764104399/Bodyweight_Squats_qln1lw.mp4" },
+          { "obj": "OBJ 02", "name": "Glute Bridge", "description": "Boca arriba con rodillas flexionadas, empuja el suelo con los pies y eleva la cadera apretando glúteos.", "series": 3, "reps": "12–15", "rest_seconds": 40, "tags": ["glúteos","isquios"], "videoUrl": "https://res.cloudinary.com/dloltdnrm/video/upload/v1764104396/Daily_10_-_Glute_Bridge_oe8wrw.mp4" },
+          { "obj": "OBJ 03", "name": "Diamond Push Up", "description": "En posición de flexión, junta las manos formando un diamante con los dedos índices y pulgares. Baja el pecho hacia las manos manteniendo los codos cerca del cuerpo.", "series": 3, "reps": "6-8", "rest_seconds": 45, "tags": ["tríceps","pecho"], "videoUrl": "https://res.cloudinary.com/dloltdnrm/video/upload/v1764113606/Diamond_Pushup_m0qkly.mp4" },
+          { "obj": "OBJ 04", "name": "Front Plank", "description": "En antebrazos o manos y puntas de pies, mantén el cuerpo en línea recta con abdomen firme y glúteos activos.", "series": 3, "reps": "20–30 s", "rest_seconds": 40, "tags": ["core","hombros"], "videoUrl": "/FRONT PLANK.webp" }
+        ]
+      },
+      {
+        "day": 2,
+        "operation_code": "FECHA_OPERATIVA_02",
+        "protocol_name": "PROTOCOLO MOVILIZACIÓN",
+        "mission_report": "Activar el sistema musculoesquelético con movimientos de movilidad y fuerza básica.",
+        "duration_min": 28,
+        "training_type": "MIXTO",
+        "difficulty": 1,
+        "exercises": [
+          { "obj": "OBJ 01", "name": "Diamond Push Up", "description": "En posición de flexión, junta las manos formando un diamante con los dedos índices y pulgares. Baja el pecho hacia las manos manteniendo los codos cerca del cuerpo.", "series": 3, "reps": "6-8", "rest_seconds": 45, "tags": ["tríceps","pecho"], "videoUrl": "https://res.cloudinary.com/dloltdnrm/video/upload/v1764113606/Diamond_Pushup_m0qkly.mp4" },
+          { "obj": "OBJ 02", "name": "Alternating Reverse Lunge", "description": "Desde de pie, da un paso largo hacia atrás, baja la rodilla trasera hacia el suelo y vuelve arriba alternando piernas.", "series": 3, "reps": "8–10 por pierna", "rest_seconds": 45, "tags": ["piernas","equilibrio"], "videoUrl": "https://res.cloudinary.com/dloltdnrm/video/upload/v1764104395/Alternating_Reverse_Lunge_tyqz1k.mp4" },
+          { "obj": "OBJ 03", "name": "Push-Up", "description": "Manos al ancho de hombros, cuerpo en línea recta; baja el pecho hacia el suelo y empuja fuerte para volver arriba.", "series": 3, "reps": "6–10", "rest_seconds": 45, "tags": ["pecho","tríceps"], "videoUrl": "https://res.cloudinary.com/dloltdnrm/video/upload/v1764104398/Push_Ups_re5uef.mp4" },
+          { "obj": "OBJ 04", "name": "Dead Bug", "description": "Boca arriba con brazos y rodillas a 90°, extiende brazo y pierna contrarios hacia el suelo sin arquear la espalda y alterna.", "series": 3, "reps": "10 por lado", "rest_seconds": 35, "tags": ["core","estabilidad"], "videoUrl": "https://res.cloudinary.com/dloltdnrm/video/upload/v1764111437/deadbug_dfsusu.mp4" }
+        ]
+      },
+      {
+        "day": 3,
+        "operation_code": "FECHA_OPERATIVA_03",
+        "protocol_name": "PROTOCOLO BARRA INICIAL",
+        "mission_report": "Introducir trabajo de barra con Dead Hang e Inverted Row para desarrollar agarre y espalda.",
+        "duration_min": 30,
+        "training_type": "FUERZA",
+        "difficulty": 2,
+        "exercises": [
+          { "obj": "OBJ 01", "name": "Dead Hang", "description": "Cuelga de la barra con brazos extendidos, hombros activos y agarre firme, manteniendo el cuerpo estable.", "series": 3, "reps": "15–25 s", "rest_seconds": 60, "tags": ["espalda","agarre"], "videoUrl": "https://res.cloudinary.com/dloltdnrm/video/upload/v1764104396/Dead_Hang_nj3dba.mp4" },
+          { "obj": "OBJ 02", "name": "Inverted Row", "description": "Con el cuerpo inclinado bajo una barra o mesa firme, tira del pecho hacia el soporte manteniendo el cuerpo en línea.", "series": 3, "reps": "6–8", "rest_seconds": 60, "tags": ["espalda","bíceps"], "videoUrl": "https://res.cloudinary.com/dloltdnrm/video/upload/v1764104397/Pronated_Body_Row_kwg2ar.mp4" },
+          { "obj": "OBJ 03", "name": "Glute Bridge", "description": "Boca arriba con rodillas flexionadas, empuja el suelo con los pies y eleva la cadera apretando glúteos.", "series": 3, "reps": "12–15", "rest_seconds": 40, "tags": ["glúteos","isquios"], "videoUrl": "https://res.cloudinary.com/dloltdnrm/video/upload/v1764104396/Daily_10_-_Glute_Bridge_oe8wrw.mp4" },
+          { "obj": "OBJ 04", "name": "Side Plank", "description": "Apoya antebrazo y borde del pie en el suelo, eleva la cadera y mantén el cuerpo en línea lateral.", "series": 2, "reps": "20 s por lado", "rest_seconds": 35, "tags": ["core","oblicuos"], "videoUrl": "https://res.cloudinary.com/dloltdnrm/image/upload/v1764111644/Side_plank_shcc7p.png" }
+        ]
+      },
+      {
+        "day": 4,
+        "operation_code": "FECHA_OPERATIVA_04",
+        "protocol_name": "PROTOCOLO HIIT SUAVE",
+        "mission_report": "Introducir intervalos de alta intensidad con ejercicios de bajo impacto.",
+        "duration_min": 25,
+        "training_type": "HIIT",
+        "difficulty": 2,
+        "exercises": [
+          { "obj": "OBJ 01", "name": "High Knees (Running in Place)", "description": "Corre en el sitio elevando rodillas a la altura de la cadera y moviendo los brazos de forma enérgica.", "series": 4, "reps": "30 s", "rest_seconds": 20, "tags": ["cardio","full body"], "videoUrl": "https://res.cloudinary.com/dloltdnrm/video/upload/v1764104400/High_Knees_crs9fg.mp4" },
+          { "obj": "OBJ 02", "name": "Bodyweight Squat", "description": "Pies al ancho de hombros, flexiona caderas y rodillas como si fueras a sentarte, manteniendo el pecho arriba y el peso en los talones.", "series": 4, "reps": "12", "rest_seconds": 25, "tags": ["piernas","glúteos"], "videoUrl": "https://res.cloudinary.com/dloltdnrm/video/upload/v1764104399/Bodyweight_Squats_qln1lw.mp4" },
+          { "obj": "OBJ 03", "name": "Jumping Jacks", "description": "Salta abriendo y cerrando piernas mientras llevas los brazos por encima de la cabeza y vuelves abajo.", "series": 4, "reps": "20–25", "rest_seconds": 25, "tags": ["cardio","full body"], "videoUrl": "https://res.cloudinary.com/dloltdnrm/video/upload/v1764104395/Jump_jacks_pgieud.mp4" },
+          { "obj": "OBJ 04", "name": "Crunch", "description": "Boca arriba con rodillas flexionadas, eleva la parte alta de la espalda acercando el pecho a las rodillas sin tirar del cuello.", "series": 4, "reps": "15", "rest_seconds": 20, "tags": ["core"], "videoUrl": null }
+        ]
+      },
+      {
+        "day": 5,
+        "operation_code": "FECHA_OPERATIVA_05",
+        "protocol_name": "PROTOCOLO FUERZA BÁSICA",
+        "mission_report": "Aumentar el volumen de fuerza full body manteniendo un esfuerzo moderado.",
+        "duration_min": 32,
+        "training_type": "FUERZA",
+        "difficulty": 2,
+        "exercises": [
+          { "obj": "OBJ 01", "name": "Bodyweight Squat", "description": "Pies al ancho de hombros, flexiona caderas y rodillas como si fueras a sentarte, manteniendo el pecho arriba y el peso en los talones.", "series": 3, "reps": "15", "rest_seconds": 45, "tags": ["piernas","glúteos"], "videoUrl": "https://res.cloudinary.com/dloltdnrm/video/upload/v1764104399/Bodyweight_Squats_qln1lw.mp4" },
+          { "obj": "OBJ 02", "name": "Push-Up", "description": "Manos al ancho de hombros, cuerpo en línea recta; baja el pecho hacia el suelo y empuja fuerte para volver arriba.", "series": 3, "reps": "8–12", "rest_seconds": 45, "tags": ["pecho","tríceps"], "videoUrl": "https://res.cloudinary.com/dloltdnrm/video/upload/v1764104398/Push_Ups_re5uef.mp4" },
+          { "obj": "OBJ 03", "name": "Inverted Row", "description": "Con el cuerpo inclinado bajo una barra o mesa firme, tira del pecho hacia el soporte manteniendo el cuerpo en línea.", "series": 3, "reps": "8–10", "rest_seconds": 50, "tags": ["espalda","bíceps"], "videoUrl": "https://res.cloudinary.com/dloltdnrm/video/upload/v1764104397/Pronated_Body_Row_kwg2ar.mp4" },
+          { "obj": "OBJ 04", "name": "Front Plank", "description": "En antebrazos o manos y puntas de pies, mantén el cuerpo en línea recta con abdomen firme y glúteos activos.", "series": 3, "reps": "30 s", "rest_seconds": 40, "tags": ["core","hombros"], "videoUrl": "/FRONT PLANK.webp" }
+        ]
+      },
+      {
+        "day": 6,
+        "operation_code": "FECHA_OPERATIVA_06",
+        "protocol_name": "PROTOCOLO HIIT BÁSICO",
+        "mission_report": "Primer circuito HIIT real con combinación de cardio y fuerza.",
+        "duration_min": 32,
+        "training_type": "HIIT",
+        "difficulty": 3,
+        "exercises": [
+          { "obj": "OBJ 01", "name": "High Knees (Running in Place)", "description": "Corre en el sitio elevando rodillas a la altura de la cadera y moviendo los brazos de forma enérgica.", "series": 4, "reps": "30 s", "rest_seconds": 20, "tags": ["cardio","full body"], "videoUrl": "https://res.cloudinary.com/dloltdnrm/video/upload/v1764104400/High_Knees_crs9fg.mp4" },
+          { "obj": "OBJ 02", "name": "Jump Squat", "description": "Realiza una sentadilla y en la parte más baja explota hacia arriba saltando con los pies del suelo.", "series": 4, "reps": "8–10", "rest_seconds": 25, "tags": ["piernas","potencia"], "videoUrl": "https://res.cloudinary.com/dloltdnrm/video/upload/v1764104396/Jump_Squats_i0maqg.mp4" },
+          { "obj": "OBJ 03", "name": "Push-Up", "description": "Manos al ancho de hombros, cuerpo en línea recta; baja el pecho hacia el suelo y empuja fuerte para volver arriba.", "series": 3, "reps": "8–10", "rest_seconds": 30, "tags": ["pecho","tríceps"], "videoUrl": "https://res.cloudinary.com/dloltdnrm/video/upload/v1764104398/Push_Ups_re5uef.mp4" },
+          { "obj": "OBJ 04", "name": "Walkout to Plank (Inchworm Walkout)", "description": "Desde de pie, inclínate, apoya las manos y camina con ellas hasta posición de plancha; mantén un segundo y vuelve.", "series": 3, "reps": "6–8", "rest_seconds": 30, "tags": ["full body","movilidad"], "videoUrl": "https://res.cloudinary.com/dloltdnrm/video/upload/v1764111437/Plank_Walk_Outs_fxb3wt.mp4" },
+          { "obj": "OBJ 05", "name": "Mountain Climbers", "description": "En posición de plancha alta, lleva las rodillas alternadamente hacia el pecho a máxima velocidad manteniendo la cadera baja.", "series": 4, "reps": "20 por pierna", "rest_seconds": 20, "tags": ["cardio","core"], "videoUrl": "https://res.cloudinary.com/dloltdnrm/video/upload/v1764111445/Mountain_Climbers_-_Trim_fkie2a.mp4" }
+        ]
+      },
+      {
+        "day": 7,
+        "operation_code": "FECHA_OPERATIVA_07",
+        "protocol_name": "PROTOCOLO CONTROL",
+        "mission_report": "Día de trabajo moderado enfocado en control motor y estabilidad.",
+        "duration_min": 28,
+        "training_type": "MIXTO",
+        "difficulty": 2,
+        "exercises": [
+          { "obj": "OBJ 01", "name": "Wall Sit", "description": "Apoya la espalda en la pared y desciende hasta que los muslos estén paralelos al suelo, manteniendo los pies al ancho de hombros.", "series": 3, "reps": "30–40 s", "rest_seconds": 40, "tags": ["piernas","isométrico"], "videoUrl": "https://res.cloudinary.com/dloltdnrm/video/upload/v1764111437/Wallsit_tmw0nn.mp4" },
+          { "obj": "OBJ 02", "name": "Glute Bridge", "description": "Boca arriba con rodillas flexionadas, empuja el suelo con los pies y eleva la cadera apretando glúteos.", "series": 3, "reps": "12–15", "rest_seconds": 35, "tags": ["glúteos","isquios"], "videoUrl": "https://res.cloudinary.com/dloltdnrm/video/upload/v1764104396/Daily_10_-_Glute_Bridge_oe8wrw.mp4" },
+          { "obj": "OBJ 03", "name": "Bird Dog", "description": "En cuatro apoyos, extiende brazo y pierna contrarios manteniendo la espalda neutra y alterna lados.", "series": 3, "reps": "10 por lado", "rest_seconds": 30, "tags": ["core","estabilidad"], "videoUrl": "https://res.cloudinary.com/dloltdnrm/video/upload/v1764104395/Bird_Dog_yflk0j.mp4" },
+          { "obj": "OBJ 04", "name": "Side Plank", "description": "Apoya antebrazo y borde del pie en el suelo, eleva la cadera y mantén el cuerpo en línea lateral.", "series": 2, "reps": "20–25 s por lado", "rest_seconds": 35, "tags": ["core","oblicuos"], "videoUrl": "https://res.cloudinary.com/dloltdnrm/image/upload/v1764111644/Side_plank_shcc7p.png" },
+          { "obj": "OBJ 05", "name": "Hollow Body Hold", "description": "Boca arriba, eleva hombros y piernas del suelo manteniendo la zona lumbar pegada y el cuerpo en forma de banana.", "series": 3, "reps": "20–25 s", "rest_seconds": 35, "tags": ["core"], "videoUrl": "https://res.cloudinary.com/dloltdnrm/video/upload/v1764104395/Hollow_Hold_qboike.mp4" }
+        ]
+      },
+      {
+        "day": 8,
+        "operation_code": "FECHA_OPERATIVA_08",
+        "protocol_name": "PROTOCOLO FUERZA INTERMEDIA",
+        "mission_report": "Subir la carga de trabajo de fuerza manteniendo buena técnica con volumen aumentado.",
+        "duration_min": 38,
+        "training_type": "FUERZA",
+        "difficulty": 3,
+        "exercises": [
+          { "obj": "OBJ 01", "name": "Assisted Bulgarian Split Squat", "description": "Con el empeine del pie trasero apoyado en un banco o silla, baja controlando la rodilla delantera; apóyate con la mano si necesitas ayuda.", "series": 3, "reps": "8–10 por pierna", "rest_seconds": 50, "tags": ["piernas","equilibrio"], "videoUrl": null },
+          { "obj": "OBJ 02", "name": "Push-Up", "description": "Manos al ancho de hombros, cuerpo en línea recta; baja el pecho hacia el suelo y empuja fuerte para volver arriba.", "series": 4, "reps": "8–12", "rest_seconds": 45, "tags": ["pecho","tríceps"], "videoUrl": "https://res.cloudinary.com/dloltdnrm/video/upload/v1764104398/Push_Ups_re5uef.mp4" },
+          { "obj": "OBJ 03", "name": "Inverted Row", "description": "Con el cuerpo inclinado bajo una barra o mesa firme, tira del pecho hacia el soporte manteniendo el cuerpo en línea.", "series": 4, "reps": "8–10", "rest_seconds": 45, "tags": ["espalda","bíceps"], "videoUrl": "https://res.cloudinary.com/dloltdnrm/video/upload/v1764104397/Pronated_Body_Row_kwg2ar.mp4" },
+          { "obj": "OBJ 04", "name": "Glute Bridge", "description": "Boca arriba con rodillas flexionadas, empuja el suelo con los pies y eleva la cadera apretando glúteos.", "series": 3, "reps": "15", "rest_seconds": 35, "tags": ["glúteos","isquios"], "videoUrl": "https://res.cloudinary.com/dloltdnrm/video/upload/v1764104396/Daily_10_-_Glute_Bridge_oe8wrw.mp4" },
+          { "obj": "OBJ 05", "name": "Plank with Arm Reach", "description": "En plancha alta, extiende un brazo al frente alternando lados sin perder estabilidad del tronco.", "series": 3, "reps": "8–10 por lado", "rest_seconds": 30, "tags": ["core","estabilidad"], "videoUrl": "https://res.cloudinary.com/dloltdnrm/video/upload/v1766005259/Plank_Arm_Reach_iksgei.mp4" }
+        ]
+      },
+      {
+        "day": 9,
+        "operation_code": "FECHA_OPERATIVA_09",
+        "protocol_name": "PROTOCOLO HIIT TÁCTICO",
+        "mission_report": "Realizar un circuito tipo misión con intervalos más intensos y mayor volumen.",
+        "duration_min": 32,
+        "training_type": "HIIT",
+        "difficulty": 3,
+        "exercises": [
+          { "obj": "OBJ 01", "name": "Jumping Jacks", "description": "Salta abriendo y cerrando piernas mientras llevas los brazos por encima de la cabeza y vuelves abajo.", "series": 4, "reps": "30–35 s", "rest_seconds": 20, "tags": ["cardio","full body"], "videoUrl": "https://res.cloudinary.com/dloltdnrm/video/upload/v1764104395/Jump_jacks_pgieud.mp4" },
+          { "obj": "OBJ 02", "name": "Alternating Reverse Lunge", "description": "Desde de pie, da un paso largo hacia atrás, baja la rodilla trasera hacia el suelo y vuelve arriba alternando piernas.", "series": 4, "reps": "10 por pierna", "rest_seconds": 25, "tags": ["piernas","equilibrio"], "videoUrl": "https://res.cloudinary.com/dloltdnrm/video/upload/v1764104395/Alternating_Reverse_Lunge_tyqz1k.mp4" },
+          { "obj": "OBJ 03", "name": "Diamond Push Up", "description": "En posición de flexión, junta las manos formando un diamante con los dedos índices y pulgares. Baja el pecho hacia las manos manteniendo los codos cerca del cuerpo.", "series": 3, "reps": "8–10", "rest_seconds": 30, "tags": ["tríceps","pecho"], "videoUrl": "https://res.cloudinary.com/dloltdnrm/video/upload/v1764113606/Diamond_Pushup_m0qkly.mp4" },
+          { "obj": "OBJ 04", "name": "Mountain Climbers", "description": "En posición de plancha alta, lleva las rodillas alternadamente hacia el pecho a máxima velocidad manteniendo la cadera baja.", "series": 4, "reps": "20–25 por pierna", "rest_seconds": 20, "tags": ["cardio","core"], "videoUrl": "https://res.cloudinary.com/dloltdnrm/video/upload/v1764111445/Mountain_Climbers_-_Trim_fkie2a.mp4" },
+          { "obj": "OBJ 05", "name": "High Knees (Running in Place)", "description": "Corre en el sitio elevando rodillas a la altura de la cadera y moviendo los brazos de forma enérgica.", "series": 3, "reps": "30–40 s", "rest_seconds": 30, "tags": ["cardio","full body"], "videoUrl": "https://res.cloudinary.com/dloltdnrm/video/upload/v1764104400/High_Knees_crs9fg.mp4" }
+        ]
+      },
+      {
+        "day": 10,
+        "operation_code": "FECHA_OPERATIVA_10",
+        "protocol_name": "PROTOCOLO BARRA INTERMEDIO",
+        "mission_report": "Avanzar en el trabajo de barra con Negative Pull-Up y mayor volumen en Dead Hang.",
+        "duration_min": 38,
+        "training_type": "FUERZA",
+        "difficulty": 3,
+        "exercises": [
+          { "obj": "OBJ 01", "name": "Dead Hang", "description": "Cuelga de la barra con brazos extendidos, hombros activos y agarre firme, manteniendo el cuerpo estable.", "series": 3, "reps": "25–35 s", "rest_seconds": 60, "tags": ["espalda","agarre"], "videoUrl": "https://res.cloudinary.com/dloltdnrm/video/upload/v1764104396/Dead_Hang_nj3dba.mp4" },
+          { "obj": "OBJ 02", "name": "Inverted Row", "description": "Con el cuerpo inclinado bajo una barra o mesa firme, tira del pecho hacia el soporte manteniendo el cuerpo en línea.", "series": 4, "reps": "8–10", "rest_seconds": 50, "tags": ["espalda","bíceps"], "videoUrl": "https://res.cloudinary.com/dloltdnrm/video/upload/v1764104397/Pronated_Body_Row_kwg2ar.mp4" },
+          { "obj": "OBJ 03", "name": "Negative Pull-Up", "description": "Sube a la posición de pull-up con ayuda (silla o salto) y baja lentamente en 3–5 segundos controlando el descenso.", "series": 3, "reps": "3–5", "rest_seconds": 90, "tags": ["espalda","bíceps","agarre"], "videoUrl": "https://res.cloudinary.com/dloltdnrm/video/upload/v1764111437/Negative_Pull_Ups_etlqbh.mp4" },
+          { "obj": "OBJ 04", "name": "Push-Up", "description": "Manos al ancho de hombros, cuerpo en línea recta; baja el pecho hacia el suelo y empuja fuerte para volver arriba.", "series": 3, "reps": "10–12", "rest_seconds": 45, "tags": ["pecho","tríceps"], "videoUrl": "https://res.cloudinary.com/dloltdnrm/video/upload/v1764104398/Push_Ups_re5uef.mp4" },
+          { "obj": "OBJ 05", "name": "Bodyweight Squat", "description": "Pies al ancho de hombros, flexiona caderas y rodillas como si fueras a sentarte, manteniendo el pecho arriba y el peso en los talones.", "series": 3, "reps": "15", "rest_seconds": 40, "tags": ["piernas","glúteos"], "videoUrl": "https://res.cloudinary.com/dloltdnrm/video/upload/v1764104399/Bodyweight_Squats_qln1lw.mp4" },
+          { "obj": "OBJ 06", "name": "Hanging Knee Raise", "description": "Colgado de la barra, eleva rodillas hacia el pecho manteniendo el tronco estable y sin balanceo.", "series": 3, "reps": "8–10", "rest_seconds": 40, "tags": ["core","agarre"], "videoUrl": "https://res.cloudinary.com/dloltdnrm/video/upload/v1764104398/Hanging_Knee_Raise_m5txrp.mp4" }
+        ]
+      },
+      {
+        "day": 11,
+        "operation_code": "FECHA_OPERATIVA_11",
+        "protocol_name": "PROTOCOLO PIERNAS & CARDIO",
+        "mission_report": "Enfocar en piernas y sistema cardiovascular con trabajo de tren superior integrado.",
+        "duration_min": 35,
+        "training_type": "HIIT",
+        "difficulty": 4,
+        "exercises": [
+          { "obj": "OBJ 01", "name": "Bodyweight Squat", "description": "Pies al ancho de hombros, flexiona caderas y rodillas como si fueras a sentarte, manteniendo el pecho arriba y el peso en los talones.", "series": 3, "reps": "15–20", "rest_seconds": 40, "tags": ["piernas","glúteos"], "videoUrl": "https://res.cloudinary.com/dloltdnrm/video/upload/v1764104399/Bodyweight_Squats_qln1lw.mp4" },
+          { "obj": "OBJ 02", "name": "Alternating Reverse Lunge", "description": "Desde de pie, da un paso largo hacia atrás, baja la rodilla trasera hacia el suelo y vuelve arriba alternando piernas.", "series": 3, "reps": "10–12 por pierna", "rest_seconds": 40, "tags": ["piernas","equilibrio"], "videoUrl": "https://res.cloudinary.com/dloltdnrm/video/upload/v1764104395/Alternating_Reverse_Lunge_tyqz1k.mp4" },
+          { "obj": "OBJ 03", "name": "Jump Squat", "description": "Realiza una sentadilla y en la parte más baja explota hacia arriba saltando con los pies del suelo.", "series": 3, "reps": "10", "rest_seconds": 35, "tags": ["piernas","potencia"], "videoUrl": "https://res.cloudinary.com/dloltdnrm/video/upload/v1764104396/Jump_Squats_i0maqg.mp4" },
+          { "obj": "OBJ 04", "name": "Push-Up", "description": "Manos al ancho de hombros, cuerpo en línea recta; baja el pecho hacia el suelo y empuja fuerte para volver arriba.", "series": 3, "reps": "10–12", "rest_seconds": 35, "tags": ["pecho","tríceps"], "videoUrl": "https://res.cloudinary.com/dloltdnrm/video/upload/v1764104398/Push_Ups_re5uef.mp4" },
+          { "obj": "OBJ 05", "name": "Glute Bridge", "description": "Boca arriba con rodillas flexionadas, empuja el suelo con los pies y eleva la cadera apretando glúteos.", "series": 3, "reps": "15", "rest_seconds": 35, "tags": ["glúteos","isquios"], "videoUrl": "https://res.cloudinary.com/dloltdnrm/video/upload/v1764104396/Daily_10_-_Glute_Bridge_oe8wrw.mp4" },
+          { "obj": "OBJ 06", "name": "High Knees (Running in Place)", "description": "Corre en el sitio elevando rodillas a la altura de la cadera y moviendo los brazos de forma enérgica.", "series": 3, "reps": "30–40 s", "rest_seconds": 30, "tags": ["cardio","full body"], "videoUrl": "https://res.cloudinary.com/dloltdnrm/video/upload/v1764104400/High_Knees_crs9fg.mp4" }
+        ]
+      },
+      {
+        "day": 12,
+        "operation_code": "FECHA_OPERATIVA_12",
+        "protocol_name": "PROTOCOLO SUPERIOR & CORE",
+        "mission_report": "Dar énfasis al tren superior y al core con volumen aumentado para máxima activación.",
+        "duration_min": 38,
+        "training_type": "FUERZA",
+        "difficulty": 4,
+        "exercises": [
+          { "obj": "OBJ 01", "name": "Push-Up", "description": "Manos al ancho de hombros, cuerpo en línea recta; baja el pecho hacia el suelo y empuja fuerte para volver arriba.", "series": 4, "reps": "10–12", "rest_seconds": 45, "tags": ["pecho","tríceps"], "videoUrl": "https://res.cloudinary.com/dloltdnrm/video/upload/v1764104398/Push_Ups_re5uef.mp4" },
+          { "obj": "OBJ 02", "name": "Diamond Push Up", "description": "En posición de flexión, junta las manos formando un diamante con los dedos índices y pulgares. Baja el pecho hacia las manos manteniendo los codos cerca del cuerpo.", "series": 3, "reps": "6–8", "rest_seconds": 45, "tags": ["tríceps","pecho"], "videoUrl": "https://res.cloudinary.com/dloltdnrm/video/upload/v1764113606/Diamond_Pushup_m0qkly.mp4" },
+          { "obj": "OBJ 03", "name": "Inverted Row", "description": "Con el cuerpo inclinado bajo una barra o mesa firme, tira del pecho hacia el soporte manteniendo el cuerpo en línea.", "series": 4, "reps": "10–12", "rest_seconds": 45, "tags": ["espalda","bíceps"], "videoUrl": "https://res.cloudinary.com/dloltdnrm/video/upload/v1764104397/Pronated_Body_Row_kwg2ar.mp4" },
+          { "obj": "OBJ 04", "name": "Plank to Push-Up (Plank Up-Downs)", "description": "Alterna pasar de plancha sobre antebrazos a plancha alta apoyando manos y volviendo abajo, manteniendo el core firme.", "series": 3, "reps": "8–10", "rest_seconds": 35, "tags": ["core","hombros"], "videoUrl": null },
+          { "obj": "OBJ 05", "name": "Dead Bug", "description": "Boca arriba con brazos y rodillas a 90°, extiende brazo y pierna contrarios hacia el suelo sin arquear la espalda y alterna.", "series": 3, "reps": "12 por lado", "rest_seconds": 30, "tags": ["core","estabilidad"], "videoUrl": "https://res.cloudinary.com/dloltdnrm/video/upload/v1764111437/deadbug_dfsusu.mp4" },
+          { "obj": "OBJ 06", "name": "Hollow Body Hold", "description": "Boca arriba, eleva hombros y piernas del suelo manteniendo la zona lumbar pegada y el cuerpo en forma de banana.", "series": 3, "reps": "25–30 s", "rest_seconds": 40, "tags": ["core"], "videoUrl": "https://res.cloudinary.com/dloltdnrm/video/upload/v1764104395/Hollow_Hold_qboike.mp4" }
+        ]
+      },
+      {
+        "day": 13,
+        "operation_code": "FECHA_OPERATIVA_13",
+        "protocol_name": "PROTOCOLO EMOM TÁCTICO",
+        "mission_report": "Entrenamiento tipo EMOM (Every Minute on the Minute) para desarrollar capacidad de trabajo.",
+        "duration_min": 30,
+        "training_type": "MIXTO",
+        "difficulty": 4,
+        "exercises": [
+          { "obj": "OBJ 01", "name": "Bodyweight Squat", "description": "Pies al ancho de hombros, flexiona caderas y rodillas como si fueras a sentarte, manteniendo el pecho arriba y el peso en los talones.", "series": 4, "reps": "12 por minuto", "rest_seconds": 0, "tags": ["piernas","glúteos"], "videoUrl": "https://res.cloudinary.com/dloltdnrm/video/upload/v1764104399/Bodyweight_Squats_qln1lw.mp4" },
+          { "obj": "OBJ 02", "name": "Push-Up", "description": "Manos al ancho de hombros, cuerpo en línea recta; baja el pecho hacia el suelo y empuja fuerte para volver arriba.", "series": 4, "reps": "8–10 por minuto", "rest_seconds": 0, "tags": ["pecho","tríceps"], "videoUrl": "https://res.cloudinary.com/dloltdnrm/video/upload/v1764104398/Push_Ups_re5uef.mp4" },
+          { "obj": "OBJ 03", "name": "Inverted Row", "description": "Con el cuerpo inclinado bajo una barra o mesa firme, tira del pecho hacia el soporte manteniendo el cuerpo en línea.", "series": 4, "reps": "8 por minuto", "rest_seconds": 0, "tags": ["espalda","bíceps"], "videoUrl": "https://res.cloudinary.com/dloltdnrm/video/upload/v1764104397/Pronated_Body_Row_kwg2ar.mp4" },
+          { "obj": "OBJ 04", "name": "Alternating Reverse Lunge", "description": "Desde de pie, da un paso largo hacia atrás, baja la rodilla trasera hacia el suelo y vuelve arriba alternando piernas.", "series": 4, "reps": "8 por pierna por minuto", "rest_seconds": 0, "tags": ["piernas","equilibrio"], "videoUrl": "https://res.cloudinary.com/dloltdnrm/video/upload/v1764104395/Alternating_Reverse_Lunge_tyqz1k.mp4" },
+          { "obj": "OBJ 05", "name": "Mountain Climbers", "description": "En posición de plancha alta, lleva las rodillas alternadamente hacia el pecho a máxima velocidad manteniendo la cadera baja.", "series": 4, "reps": "20 por pierna por minuto", "rest_seconds": 0, "tags": ["cardio","core"], "videoUrl": "https://res.cloudinary.com/dloltdnrm/video/upload/v1764111445/Mountain_Climbers_-_Trim_fkie2a.mp4" },
+          { "obj": "OBJ 06", "name": "Front Plank", "description": "En antebrazos o manos y puntas de pies, mantén el cuerpo en línea recta con abdomen firme y glúteos activos.", "series": 4, "reps": "30–40 s por minuto", "rest_seconds": 0, "tags": ["core","hombros"], "videoUrl": "/FRONT PLANK.webp" }
+        ]
+      },
+      {
+        "day": 14,
+        "operation_code": "FECHA_OPERATIVA_14",
+        "protocol_name": "PROTOCOLO CORE & MOVILIDAD",
+        "mission_report": "Sesión dedicada al core profundo y movilidad activa para preparar la fase final.",
+        "duration_min": 32,
+        "training_type": "MIXTO",
+        "difficulty": 3,
+        "exercises": [
+          { "obj": "OBJ 01", "name": "Lateral Step March (Side Steps)", "description": "Desde posición de pie, da pasos laterales controlados elevando ligeramente las rodillas y manteniendo el core activo.", "series": 3, "reps": "40 s", "rest_seconds": 30, "tags": ["movilidad","calentamiento"], "videoUrl": null },
+          { "obj": "OBJ 02", "name": "Bird Dog", "description": "En cuatro apoyos, extiende brazo y pierna contrarios manteniendo la espalda neutra y alterna lados.", "series": 3, "reps": "10–12 por lado", "rest_seconds": 30, "tags": ["core","estabilidad"], "videoUrl": "https://res.cloudinary.com/dloltdnrm/video/upload/v1764104395/Bird_Dog_yflk0j.mp4" },
+          { "obj": "OBJ 03", "name": "Glute Bridge", "description": "Boca arriba con rodillas flexionadas, empuja el suelo con los pies y eleva la cadera apretando glúteos.", "series": 3, "reps": "15", "rest_seconds": 35, "tags": ["glúteos","isquios"], "videoUrl": "https://res.cloudinary.com/dloltdnrm/video/upload/v1764104396/Daily_10_-_Glute_Bridge_oe8wrw.mp4" },
+          { "obj": "OBJ 04", "name": "Side Plank", "description": "Apoya antebrazo y borde del pie en el suelo, eleva la cadera y mantén el cuerpo en línea lateral.", "series": 3, "reps": "25–30 s por lado", "rest_seconds": 35, "tags": ["core","oblicuos"], "videoUrl": "https://res.cloudinary.com/dloltdnrm/image/upload/v1764111644/Side_plank_shcc7p.png" },
+          { "obj": "OBJ 05", "name": "Dead Bug", "description": "Boca arriba con brazos y rodillas a 90°, extiende brazo y pierna contrarios hacia el suelo sin arquear la espalda y alterna.", "series": 3, "reps": "12 por lado", "rest_seconds": 30, "tags": ["core","estabilidad"], "videoUrl": "https://res.cloudinary.com/dloltdnrm/video/upload/v1764111437/deadbug_dfsusu.mp4" },
+          { "obj": "OBJ 06", "name": "Superman", "description": "Boca abajo, eleva simultáneamente brazos y piernas del suelo activando la espalda y los glúteos.", "series": 3, "reps": "12–15", "rest_seconds": 30, "tags": ["espalda","glúteos"], "videoUrl": "https://res.cloudinary.com/dloltdnrm/video/upload/v1764111436/Superman_Exercise_wqftwp.mp4" }
+        ]
+      },
+      {
+        "day": 15,
+        "operation_code": "FECHA_OPERATIVA_15",
+        "protocol_name": "PROTOCOLO FUERZA AVANZADA",
+        "mission_report": "Subir un nivel la fuerza general con variaciones más desafiantes y volumen alto.",
+        "duration_min": 42,
+        "training_type": "FUERZA",
+        "difficulty": 4,
+        "exercises": [
+          { "obj": "OBJ 01", "name": "Assisted Bulgarian Split Squat", "description": "Con el empeine del pie trasero apoyado en un banco o silla, baja controlando la rodilla delantera; apóyate con la mano si necesitas ayuda.", "series": 4, "reps": "10–12 por pierna", "rest_seconds": 50, "tags": ["piernas","equilibrio"], "videoUrl": null },
+          { "obj": "OBJ 02", "name": "Assisted Pistol Squat (Assisted Single-Leg Squat)", "description": "Sostente de una superficie estable mientras bajas en sentadilla a una pierna, manteniendo la otra extendida al frente.", "series": 3, "reps": "5–6 por pierna", "rest_seconds": 60, "tags": ["piernas","equilibrio"], "videoUrl": "https://res.cloudinary.com/dloltdnrm/video/upload/v1764111436/Assisted_Pistol_Squat_achmnn.mp4" },
+          { "obj": "OBJ 03", "name": "Diamond Push Up", "description": "En posición de flexión, junta las manos formando un diamante con los dedos índices y pulgares. Baja el pecho hacia las manos manteniendo los codos cerca del cuerpo.", "series": 4, "reps": "8–10", "rest_seconds": 45, "tags": ["tríceps","pecho"], "videoUrl": "https://res.cloudinary.com/dloltdnrm/video/upload/v1764113606/Diamond_Pushup_m0qkly.mp4" },
+          { "obj": "OBJ 04", "name": "Inverted Row", "description": "Con el cuerpo inclinado bajo una barra o mesa firme, tira del pecho hacia el soporte manteniendo el cuerpo en línea.", "series": 4, "reps": "10–12", "rest_seconds": 45, "tags": ["espalda","bíceps"], "videoUrl": "https://res.cloudinary.com/dloltdnrm/video/upload/v1764104397/Pronated_Body_Row_kwg2ar.mp4" },
+          { "obj": "OBJ 05", "name": "Plank to Push-Up (Plank Up-Downs)", "description": "Alterna pasar de plancha sobre antebrazos a plancha alta apoyando manos y volviendo abajo, manteniendo el core firme.", "series": 3, "reps": "8–10", "rest_seconds": 35, "tags": ["core","hombros"], "videoUrl": null },
+          { "obj": "OBJ 06", "name": "Hollow Body Hold", "description": "Boca arriba, eleva hombros y piernas del suelo manteniendo la zona lumbar pegada y el cuerpo en forma de banana.", "series": 3, "reps": "30–35 s", "rest_seconds": 40, "tags": ["core"], "videoUrl": "https://res.cloudinary.com/dloltdnrm/video/upload/v1764104395/Hollow_Hold_qboike.mp4" }
+        ]
+      },
+      {
+        "day": 16,
+        "operation_code": "FECHA_OPERATIVA_16",
+        "protocol_name": "PROTOCOLO HIIT AVANZADO",
+        "mission_report": "Circuito de alta intensidad estilo militar con máximo volumen y control técnico.",
+        "duration_min": 38,
+        "training_type": "HIIT",
+        "difficulty": 5,
+        "exercises": [
+          { "obj": "OBJ 01", "name": "Burpee", "description": "Desde de pie, apoya manos en el suelo, extiende los pies atrás a plancha, vuelve con los pies hacia las manos y sube de nuevo a la posición inicial con o sin salto.", "series": 4, "reps": "10–12", "rest_seconds": 30, "tags": ["full body","cardio"], "videoUrl": "https://res.cloudinary.com/dloltdnrm/video/upload/v1764104395/Burpees_hkke5w.mp4" },
+          { "obj": "OBJ 02", "name": "Jump Squat", "description": "Realiza una sentadilla y en la parte más baja explota hacia arriba saltando con los pies del suelo.", "series": 4, "reps": "10–12", "rest_seconds": 25, "tags": ["piernas","potencia"], "videoUrl": "https://res.cloudinary.com/dloltdnrm/video/upload/v1764104396/Jump_Squats_i0maqg.mp4" },
+          { "obj": "OBJ 03", "name": "Push-Up", "description": "Manos al ancho de hombros, cuerpo en línea recta; baja el pecho hacia el suelo y empuja fuerte para volver arriba.", "series": 4, "reps": "12–15", "rest_seconds": 25, "tags": ["pecho","tríceps"], "videoUrl": "https://res.cloudinary.com/dloltdnrm/video/upload/v1764104398/Push_Ups_re5uef.mp4" },
+          { "obj": "OBJ 04", "name": "Mountain Climbers", "description": "En posición de plancha alta, lleva las rodillas alternadamente hacia el pecho a máxima velocidad manteniendo la cadera baja.", "series": 4, "reps": "25–30 por pierna", "rest_seconds": 20, "tags": ["cardio","core"], "videoUrl": "https://res.cloudinary.com/dloltdnrm/video/upload/v1764111445/Mountain_Climbers_-_Trim_fkie2a.mp4" },
+          { "obj": "OBJ 05", "name": "Alternating Reverse Lunge", "description": "Desde de pie, da un paso largo hacia atrás, baja la rodilla trasera hacia el suelo y vuelve arriba alternando piernas.", "series": 4, "reps": "10 por pierna", "rest_seconds": 25, "tags": ["piernas","equilibrio"], "videoUrl": "https://res.cloudinary.com/dloltdnrm/video/upload/v1764104395/Alternating_Reverse_Lunge_tyqz1k.mp4" },
+          { "obj": "OBJ 06", "name": "Plank to Push-Up (Plank Up-Downs)", "description": "Alterna pasar de plancha sobre antebrazos a plancha alta apoyando manos y volviendo abajo, manteniendo el core firme.", "series": 4, "reps": "10–12", "rest_seconds": 25, "tags": ["core","hombros"], "videoUrl": null }
+        ]
+      },
+      {
+        "day": 17,
+        "operation_code": "FECHA_OPERATIVA_17",
+        "protocol_name": "PROTOCOLO BARRA AVANZADO",
+        "mission_report": "Maximizar el trabajo de barra con series avanzadas de Negative Pull-Up y Hanging Knee Raise.",
+        "duration_min": 40,
+        "training_type": "FUERZA",
+        "difficulty": 4,
+        "exercises": [
+          { "obj": "OBJ 01", "name": "Dead Hang", "description": "Cuelga de la barra con brazos extendidos, hombros activos y agarre firme, manteniendo el cuerpo estable.", "series": 3, "reps": "30–40 s", "rest_seconds": 60, "tags": ["espalda","agarre"], "videoUrl": "https://res.cloudinary.com/dloltdnrm/video/upload/v1764104396/Dead_Hang_nj3dba.mp4" },
+          { "obj": "OBJ 02", "name": "Inverted Row", "description": "Con el cuerpo inclinado bajo una barra o mesa firme, tira del pecho hacia el soporte manteniendo el cuerpo en línea.", "series": 4, "reps": "10–12", "rest_seconds": 50, "tags": ["espalda","bíceps"], "videoUrl": "https://res.cloudinary.com/dloltdnrm/video/upload/v1764104397/Pronated_Body_Row_kwg2ar.mp4" },
+          { "obj": "OBJ 03", "name": "Negative Pull-Up", "description": "Sube a la posición de pull-up con ayuda (silla o salto) y baja lentamente en 3–5 segundos controlando el descenso.", "series": 4, "reps": "4–5", "rest_seconds": 90, "tags": ["espalda","bíceps","agarre"], "videoUrl": "https://res.cloudinary.com/dloltdnrm/video/upload/v1764111437/Negative_Pull_Ups_etlqbh.mp4" },
+          { "obj": "OBJ 04", "name": "Diamond Push Up", "description": "En posición de flexión, junta las manos formando un diamante con los dedos índices y pulgares. Baja el pecho hacia las manos manteniendo los codos cerca del cuerpo.", "series": 3, "reps": "8–10", "rest_seconds": 45, "tags": ["tríceps","pecho"], "videoUrl": "https://res.cloudinary.com/dloltdnrm/video/upload/v1764113606/Diamond_Pushup_m0qkly.mp4" },
+          { "obj": "OBJ 05", "name": "Bodyweight Squat", "description": "Pies al ancho de hombros, flexiona caderas y rodillas como si fueras a sentarte, manteniendo el pecho arriba y el peso en los talones.", "series": 3, "reps": "15–20", "rest_seconds": 40, "tags": ["piernas","glúteos"], "videoUrl": "https://res.cloudinary.com/dloltdnrm/video/upload/v1764104399/Bodyweight_Squats_qln1lw.mp4" },
+          { "obj": "OBJ 06", "name": "Hanging Knee Raise", "description": "Colgado de la barra, eleva rodillas hacia el pecho manteniendo el tronco estable y sin balanceo.", "series": 3, "reps": "10–12", "rest_seconds": 45, "tags": ["core","agarre"], "videoUrl": "https://res.cloudinary.com/dloltdnrm/video/upload/v1764104398/Hanging_Knee_Raise_m5txrp.mp4" }
+        ]
+      },
+      {
+        "day": 18,
+        "operation_code": "FECHA_OPERATIVA_18",
+        "protocol_name": "PROTOCOLO CIRCUITO MIXTO",
+        "mission_report": "Combinar fuerza y cardio en un solo circuito continuo de alto volumen.",
+        "duration_min": 38,
+        "training_type": "MIXTO",
+        "difficulty": 4,
+        "exercises": [
+          { "obj": "OBJ 01", "name": "Bodyweight Squat", "description": "Pies al ancho de hombros, flexiona caderas y rodillas como si fueras a sentarte, manteniendo el pecho arriba y el peso en los talones.", "series": 4, "reps": "15", "rest_seconds": 20, "tags": ["piernas","glúteos"], "videoUrl": "https://res.cloudinary.com/dloltdnrm/video/upload/v1764104399/Bodyweight_Squats_qln1lw.mp4" },
+          { "obj": "OBJ 02", "name": "Push-Up", "description": "Manos al ancho de hombros, cuerpo en línea recta; baja el pecho hacia el suelo y empuja fuerte para volver arriba.", "series": 4, "reps": "10–12", "rest_seconds": 20, "tags": ["pecho","tríceps"], "videoUrl": "https://res.cloudinary.com/dloltdnrm/video/upload/v1764104398/Push_Ups_re5uef.mp4" },
+          { "obj": "OBJ 03", "name": "Inverted Row", "description": "Con el cuerpo inclinado bajo una barra o mesa firme, tira del pecho hacia el soporte manteniendo el cuerpo en línea.", "series": 4, "reps": "10", "rest_seconds": 20, "tags": ["espalda","bíceps"], "videoUrl": "https://res.cloudinary.com/dloltdnrm/video/upload/v1764104397/Pronated_Body_Row_kwg2ar.mp4" },
+          { "obj": "OBJ 04", "name": "Alternating Reverse Lunge", "description": "Desde de pie, da un paso largo hacia atrás, baja la rodilla trasera hacia el suelo y vuelve arriba alternando piernas.", "series": 4, "reps": "10 por pierna", "rest_seconds": 20, "tags": ["piernas","equilibrio"], "videoUrl": "https://res.cloudinary.com/dloltdnrm/video/upload/v1764104395/Alternating_Reverse_Lunge_tyqz1k.mp4" },
+          { "obj": "OBJ 05", "name": "Shoulder Tap Plank", "description": "En plancha alta, toca con una mano el hombro contrario alternando lados y evitando mover la cadera.", "series": 3, "reps": "10 por lado", "rest_seconds": 20, "tags": ["core","hombros"], "videoUrl": "https://res.cloudinary.com/dloltdnrm/video/upload/v1764104397/Plank_Shoulder_Taps_govtjs.mp4" },
+          { "obj": "OBJ 06", "name": "Jumping Jacks", "description": "Salta abriendo y cerrando piernas mientras llevas los brazos por encima de la cabeza y vuelves abajo.", "series": 4, "reps": "30 s", "rest_seconds": 20, "tags": ["cardio","full body"], "videoUrl": "https://res.cloudinary.com/dloltdnrm/video/upload/v1764104395/Jump_jacks_pgieud.mp4" }
+        ]
+      },
+      {
+        "day": 19,
+        "operation_code": "FECHA_OPERATIVA_19",
+        "protocol_name": "PROTOCOLO MISIÓN LARGA",
+        "mission_report": "Sesión extendida de alto volumen para preparar el cuerpo para la prueba final.",
+        "duration_min": 45,
+        "training_type": "MIXTO",
+        "difficulty": 4,
+        "exercises": [
+          { "obj": "OBJ 01", "name": "Bodyweight Squat", "description": "Pies al ancho de hombros, flexiona caderas y rodillas como si fueras a sentarte, manteniendo el pecho arriba y el peso en los talones.", "series": 4, "reps": "20", "rest_seconds": 45, "tags": ["piernas","glúteos"], "videoUrl": "https://res.cloudinary.com/dloltdnrm/video/upload/v1764104399/Bodyweight_Squats_qln1lw.mp4" },
+          { "obj": "OBJ 02", "name": "Alternating Reverse Lunge", "description": "Desde de pie, da un paso largo hacia atrás, baja la rodilla trasera hacia el suelo y vuelve arriba alternando piernas.", "series": 3, "reps": "12 por pierna", "rest_seconds": 45, "tags": ["piernas","equilibrio"], "videoUrl": "https://res.cloudinary.com/dloltdnrm/video/upload/v1764104395/Alternating_Reverse_Lunge_tyqz1k.mp4" },
+          { "obj": "OBJ 03", "name": "Push-Up", "description": "Manos al ancho de hombros, cuerpo en línea recta; baja el pecho hacia el suelo y empuja fuerte para volver arriba.", "series": 4, "reps": "12–15", "rest_seconds": 45, "tags": ["pecho","tríceps"], "videoUrl": "https://res.cloudinary.com/dloltdnrm/video/upload/v1764104398/Push_Ups_re5uef.mp4" },
+          { "obj": "OBJ 04", "name": "Inverted Row", "description": "Con el cuerpo inclinado bajo una barra o mesa firme, tira del pecho hacia el soporte manteniendo el cuerpo en línea.", "series": 4, "reps": "10–12", "rest_seconds": 45, "tags": ["espalda","bíceps"], "videoUrl": "https://res.cloudinary.com/dloltdnrm/video/upload/v1764104397/Pronated_Body_Row_kwg2ar.mp4" },
+          { "obj": "OBJ 05", "name": "Dead Hang", "description": "Cuelga de la barra con brazos extendidos, hombros activos y agarre firme, manteniendo el cuerpo estable.", "series": 3, "reps": "25–35 s", "rest_seconds": 60, "tags": ["espalda","agarre"], "videoUrl": "https://res.cloudinary.com/dloltdnrm/video/upload/v1764104396/Dead_Hang_nj3dba.mp4" },
+          { "obj": "OBJ 06", "name": "Mountain Climbers", "description": "En posición de plancha alta, lleva las rodillas alternadamente hacia el pecho a máxima velocidad manteniendo la cadera baja.", "series": 3, "reps": "25–30 por pierna", "rest_seconds": 40, "tags": ["cardio","core"], "videoUrl": "https://res.cloudinary.com/dloltdnrm/video/upload/v1764111445/Mountain_Climbers_-_Trim_fkie2a.mp4" },
+          { "obj": "OBJ 07", "name": "Hollow Body Hold", "description": "Boca arriba, eleva hombros y piernas del suelo manteniendo la zona lumbar pegada y el cuerpo en forma de banana.", "series": 3, "reps": "30–35 s", "rest_seconds": 45, "tags": ["core"], "videoUrl": "https://res.cloudinary.com/dloltdnrm/video/upload/v1764104395/Hollow_Hold_qboike.mp4" }
+        ]
+      },
+      {
+        "day": 20,
+        "operation_code": "FECHA_OPERATIVA_20",
+        "protocol_name": "PROTOCOLO ISOMÉTRICO",
+        "mission_report": "Sesión de fuerza isométrica para consolidar control muscular antes de la prueba final.",
+        "duration_min": 38,
+        "training_type": "FUERZA",
+        "difficulty": 4,
+        "exercises": [
+          { "obj": "OBJ 01", "name": "Wall Sit", "description": "Apoya la espalda en la pared y desciende hasta que los muslos estén paralelos al suelo, manteniendo los pies al ancho de hombros.", "series": 3, "reps": "40–50 s", "rest_seconds": 50, "tags": ["piernas","isométrico"], "videoUrl": "https://res.cloudinary.com/dloltdnrm/video/upload/v1764111437/Wallsit_tmw0nn.mp4" },
+          { "obj": "OBJ 02", "name": "Glute Bridge", "description": "Boca arriba con rodillas flexionadas, empuja el suelo con los pies y eleva la cadera apretando glúteos.", "series": 3, "reps": "15–20", "rest_seconds": 40, "tags": ["glúteos","isquios"], "videoUrl": "https://res.cloudinary.com/dloltdnrm/video/upload/v1764104396/Daily_10_-_Glute_Bridge_oe8wrw.mp4" },
+          { "obj": "OBJ 03", "name": "Front Plank", "description": "En antebrazos o manos y puntas de pies, mantén el cuerpo en línea recta con abdomen firme y glúteos activos.", "series": 3, "reps": "40–50 s", "rest_seconds": 45, "tags": ["core","hombros"], "videoUrl": "/FRONT PLANK.webp" },
+          { "obj": "OBJ 04", "name": "Side Plank", "description": "Apoya antebrazo y borde del pie en el suelo, eleva la cadera y mantén el cuerpo en línea lateral.", "series": 3, "reps": "30–35 s por lado", "rest_seconds": 45, "tags": ["core","oblicuos"], "videoUrl": "https://res.cloudinary.com/dloltdnrm/image/upload/v1764111644/Side_plank_shcc7p.png" },
+          { "obj": "OBJ 05", "name": "Hollow Body Hold", "description": "Boca arriba, eleva hombros y piernas del suelo manteniendo la zona lumbar pegada y el cuerpo en forma de banana.", "series": 3, "reps": "30–40 s", "rest_seconds": 45, "tags": ["core"], "videoUrl": "https://res.cloudinary.com/dloltdnrm/video/upload/v1764104395/Hollow_Hold_qboike.mp4" },
+          { "obj": "OBJ 06", "name": "Shoulder Tap Plank", "description": "En plancha alta, toca con una mano el hombro contrario alternando lados y evitando mover la cadera.", "series": 3, "reps": "12 por lado", "rest_seconds": 45, "tags": ["core","hombros"], "videoUrl": "https://res.cloudinary.com/dloltdnrm/video/upload/v1764104397/Plank_Shoulder_Taps_govtjs.mp4" }
+        ]
+      },
+      {
+        "day": 21,
+        "operation_code": "FECHA_OPERATIVA_21",
+        "protocol_name": "PROTOCOLO PRUEBA FINAL",
+        "mission_report": "Evaluar la evolución completando un circuito táctico completo de máximo rendimiento.",
+        "duration_min": 45,
+        "training_type": "MIXTO",
+        "difficulty": 5,
+        "exercises": [
+          { "obj": "OBJ 01", "name": "Bodyweight Squat", "description": "Pies al ancho de hombros, flexiona caderas y rodillas como si fueras a sentarte, manteniendo el pecho arriba y el peso en los talones.", "series": 1, "reps": "Máx repeticiones en 60 s", "rest_seconds": 60, "tags": ["piernas","glúteos"], "videoUrl": "https://res.cloudinary.com/dloltdnrm/video/upload/v1764104399/Bodyweight_Squats_qln1lw.mp4" },
+          { "obj": "OBJ 02", "name": "Push-Up", "description": "Manos al ancho de hombros, cuerpo en línea recta; baja el pecho hacia el suelo y empuja fuerte para volver arriba.", "series": 1, "reps": "Máx repeticiones en 60 s", "rest_seconds": 60, "tags": ["pecho","tríceps"], "videoUrl": "https://res.cloudinary.com/dloltdnrm/video/upload/v1764104398/Push_Ups_re5uef.mp4" },
+          { "obj": "OBJ 03", "name": "Inverted Row", "description": "Con el cuerpo inclinado bajo una barra o mesa firme, tira del pecho hacia el soporte manteniendo el cuerpo en línea.", "series": 1, "reps": "Máx repeticiones en 60 s", "rest_seconds": 60, "tags": ["espalda","bíceps"], "videoUrl": "https://res.cloudinary.com/dloltdnrm/video/upload/v1764104397/Pronated_Body_Row_kwg2ar.mp4" },
+          { "obj": "OBJ 04", "name": "Alternating Reverse Lunge", "description": "Desde de pie, da un paso largo hacia atrás, baja la rodilla trasera hacia el suelo y vuelve arriba alternando piernas.", "series": 1, "reps": "Máx repeticiones en 60 s", "rest_seconds": 60, "tags": ["piernas","equilibrio"], "videoUrl": "https://res.cloudinary.com/dloltdnrm/video/upload/v1764104395/Alternating_Reverse_Lunge_tyqz1k.mp4" },
+          { "obj": "OBJ 05", "name": "Dead Hang", "description": "Cuelga de la barra con brazos extendidos, hombros activos y agarre firme, manteniendo el cuerpo estable.", "series": 1, "reps": "Máx tiempo", "rest_seconds": 60, "tags": ["espalda","agarre"], "videoUrl": "https://res.cloudinary.com/dloltdnrm/video/upload/v1764104396/Dead_Hang_nj3dba.mp4" },
+          { "obj": "OBJ 06", "name": "Burpee", "description": "Desde de pie, apoya manos en el suelo, extiende los pies atrás a plancha, vuelve con los pies hacia las manos y sube de nuevo a la posición inicial con o sin salto.", "series": 1, "reps": "Máx repeticiones en 60 s", "rest_seconds": 60, "tags": ["full body","cardio"], "videoUrl": "https://res.cloudinary.com/dloltdnrm/video/upload/v1764104395/Burpees_hkke5w.mp4" },
+          { "obj": "OBJ 07", "name": "Hollow Body Hold", "description": "Boca arriba, eleva hombros y piernas del suelo manteniendo la zona lumbar pegada y el cuerpo en forma de banana.", "series": 3, "reps": "30 s por ronda", "rest_seconds": 45, "tags": ["core"], "videoUrl": "https://res.cloudinary.com/dloltdnrm/video/upload/v1764104395/Hollow_Hold_qboike.mp4" }
+        ]
+      }
+    ]
+  },
+
+  "bonus_clasificado": {
+    "section_title": "ARCHIVOS DE BONIFICACIÓN",
+    "access_label": "ACCESO CLASIFICADO",
+    "items": [
+      {
+        "id": 1,
+        "title": "PROTOCOLO DE PUÑOS DE ACERO",
+        "description": "Desarrolla una fuerza surrealista en tus manos para un rendimiento superior en todos los ejercicios y en el combate.",
+        "pdfUrl": "/pdfs/Protocolo-Punos-de-Acero.pdf",
+        "fileName": "Protocolo-Punos-de-Acero.pdf"
+      },
+      {
+        "id": 2,
+        "title": "GUÍA DEFINITIVA DE LOS SABOTEADORES DE TESTOSTERONA",
+        "description": "Aprende a identificar y eliminar los factores que disminuyen tu testosterona.",
+        "pdfUrl": "/pdfs/Guia-Definitiva-de-los-Saboteadores-de-Testosterona.pdf",
+        "fileName": "Guia-Definitiva-de-los-Saboteadores-de-Testosterona.pdf"
+      }
+    ]
+  },
+
+  "sleep_protocol": {
+    "section_title": "PROTOCOLO DE SUEÑO",
+    "objective": "Maximizar la producción de testosterona durante el sueño y evitar picos de insulina que bloquean la hormona del crecimiento.",
+    "modules": [
+      {
+        "id": 1,
+        "title": "MÓDULO 1: FUNDAMENTOS TÁCTICOS",
+        "subtitle": "La conexión vital entre sueño y testosterona.",
+        "content": {
+          "key_concept": "La Erección Matutina es tu 'Check Engine': Si no despiertas con una erección ('bandera izada'), tu sistema hormonal está pidiendo auxilio. No es solo sexo, es salud cardiovascular y recuperación nerviosa.",
+          "hormonal_collapse_checklist": [
+            "Niebla mental al despertar",
+            "Necesidad de café antes de las 10:00",
+            "Irritabilidad por la tarde",
+            "Libido baja o ausente",
+            "Sueño no reparador"
+          ],
+          "night_triad": {
+            "component_1": {
+              "name": "Grasas Saludables + Proteína",
+              "description": "Base fundamental. Digestión lenta para aporte sostenido de aminoácidos.",
+              "foods": ["Huevos Enteros", "Atún en agua", "Queso cottage", "Almendras"]
+            },
+            "component_2": {
+              "name": "Carbohidratos de Bajo IG",
+              "description": "Disparo controlado de insulina para facilitar el triptófano al cerebro.",
+              "foods": ["Avena", "Camote/Batata", "Arroz blanco (porción pequeña)", "Plátano maduro"]
+            },
+            "component_3": {
+              "name": "Micronutrientes Clave",
+              "description": "Zinc y magnesio: los dos minerales más robados por el estrés y el ejercicio.",
+              "foods": ["Semillas de calabaza", "Espinacas", "Chocolate negro 85%+", "Mariscos"]
+            }
+          }
+        }
+      },
+      {
+        "id": 2,
+        "title": "MÓDULO 2: PROTOCOLO DE DESCONEXIÓN",
+        "subtitle": "Técnicas para apagar el sistema nervioso simpático.",
+        "content": {
+          "shutdown_ritual": {
+            "time": "21:00H",
+            "steps": [
+              "Filtro de luz azul en celular (o dejarlo en otra habitación).",
+              "Ducha de contraste (caliente/fría) para bajar temperatura corporal.",
+              "Magnesio + Zinc (ZMA) si tienes disponible."
+            ]
+          },
+          "breathing_technique": {
+            "name": "Respiración Anti-Cortisol (4-7-8)",
+            "pattern": "INHALA 4s | RETÉN 7s | EXHALA 8s",
+            "cycles": 4
+          }
+        }
+      },
+      {
+        "id": 3,
+        "title": "MÓDULO 3: EL RESET 72H",
+        "subtitle": "Plan de emergencia para recuperar el ritmo.",
+        "content": {
+          "days": [
+            {
+              "day": 1,
+              "title": "DÍA 1: DEUDA",
+              "description": "Añadir 90min de sueño. Cero cafeína después de las 12:00."
+            },
+            {
+              "day": 2,
+              "title": "DÍA 2: RITMO",
+              "description": "Exposición solar 15min al despertar. Cena ligera 3h antes de dormir."
+            },
+            {
+              "day": 3,
+              "title": "DÍA 3: CONSOLIDACIÓN",
+              "description": "Ejercicio intenso por la mañana. Oscuridad total en la habitación."
+            }
+          ]
+        }
+      }
+    ],
+    "sleep_log_fields": {
+      "hours": "number (e.g. 7)",
+      "bedTime": "string HH:MM (e.g. '23:00')",
+      "wakeTime": "string HH:MM (e.g. '07:00')",
+      "erection": "enum: YES | PARTIAL | NO",
+      "mood": "enum: OK | (others)"
+    }
+  },
+
+  "nutrition_tactics": {
+    "section_title": "NUTRICIÓN TÁCTICA",
+    "image": "/Nutri.jpg",
+    "access_type": "email-gated (Hotmart code required for non-approved users)",
+    "ai_generated": true,
+    "ai_model": "gemini-2.5-flash-lite",
+    "prompt_structure": {
+      "role": "nutricionista militar de élite",
+      "inputs": {
+        "weight_kg": "user profile weight",
+        "height_cm": "user profile height",
+        "age_years": "calculated from profile",
+        "target_weight_kg": "user profile targetWeight",
+        "dietary_restrictions": "user input or 'Ninguna'"
+      },
+      "output_structure": {
+        "bmr": "number",
+        "dailyCalories": "number",
+        "proteinGrams": "number",
+        "meals": [
+          {
+            "name": "Desayuno | Almuerzo | Cena | Snack",
+            "options": [
+              {
+                "name": "string with emoji",
+                "description": "string",
+                "ingredients": ["string with exact portion (e.g. '2 huevos', '100g de arroz')"]
+              }
+            ]
+          }
+        ]
+      },
+      "focus": "alimentos comunes en América Latina (económicos y accesibles), 2 options per meal"
+    }
+  },
+
+  "maya_ai_assistant": {
+    "name": "Maya",
+    "image_files": ["/Maya.png", "/maya-2.png"],
+    "model": "gemini-2.5-flash-lite",
+    "api_endpoint": "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent",
+    "api_key": "AIzaSyBaWw_7o8VvUp66PKvQOxtRso5bFBpjzY8",
+    "context_window": "last 10 messages",
+    "system_prompt": "Eres Maya, la instructora del app de entrenamiento de 21 días. Hablas SOLO en español latinoamericano.\n\nQUIÉN ERES:\nEres como esa amiga fit que te empuja a entrenar pero sin ser intensa. Tienes onda militar porque te gusta la disciplina, pero eres relajada y real. Te importa que la gente termine el programa, no impresionar con palabras fancy.\n\nTU VIBE:\n- Firme cuando toca, suave cuando se necesita\n- Usas 'soldado' o 'recluta' de forma cariñosa, no intimidante\n- Te ríes con ellos, no eres un sargento gritón\n- Hablas como persona normal, no como manual de instrucciones\n- Si alguien la está pasando mal, lo escuchas primero\n\nSOBRE EL PROGRAMA:\nApp de 21 días, calistenia con peso corporal (flexiones, sentadillas, planchas, dominadas). Sin gym, sin excusas.\n\nSOBRE LA APP (CONTEXTO VISUAL):\n- BONUS CLASIFICADO: Está justo encima de donde inicias el día ('Misión Activa'). Es un botón grande con un escudo.\n- NUTRICIÓN MILITAR: Está debajo del botón de Bonus. Requiere código del email de Hotmart si está bloqueado.\n- INICIAR DÍA: Es el botón grande de 'Play' en la tarjeta de 'Misión Activa'.\n- PERFIL: Arriba a la derecha. Ahí cambian su peso y objetivo.\n- CONTRASEÑAS/ACCESO: En el ÁREA DE MIEMBROS DE HOTMART.\n\nCÓMO RESPONDES:\n- Corto y al punto, sin rollos\n- Puedes usar emoji de vez en cuando si queda natural\n- Si preguntan algo médico serio → 'mejor chécalo con un doctor'\n- Si quieren tirar la toalla → los motivas pero sin sermón\n- NUNCA uses asteriscos dobles para enfatizar texto",
+    "greeting_message": "Maya. Aquí estoy para que no te rindas. ¿Qué te trae por aquí? ¿Dudas, dolor o necesitas un empujón? 💪"
+  },
+
+  "backend_config": {
+    "provider": "Supabase",
+    "project_url": "https://lsfbjcjmybdamchendow.supabase.co",
+    "anon_key_variable": "V1 (JWT - redacted for security)",
+    "tables": {
+      "app_approved": "email whitelist for app access - query: .select('email').eq('email', userEmail).maybeSingle()",
+      "nutrition_approved": "email whitelist for nutrition section access",
+      "sleep_approved": "email whitelist for sleep protocol access",
+      "presidential_approved": "email whitelist for presidential/premium access"
+    },
+    "access_check_returns": {
+      "nutrition": "boolean",
+      "sleep": "boolean",
+      "presidential": "boolean"
+    }
+  },
+
+  "localStorage_keys": [
+    "swapped_exercises",
+    "tactical_nutrition_unlocked",
+    "tactical_sleep_unlocked",
+    "tactical_presidential_unlocked",
+    "tactical_auth",
+    "tactical_email",
+    "tactical_user_id",
+    "tactical_sleep_profile",
+    "tactical_sleep_logs",
+    "tactical_last_sleep_checkin",
+    "tactical_profile",
+    "tactical_progress",
+    "tactical_exercises",
+    "tactical_ongoing_workout",
+    "tactical_progress_v2",
+    "tactical_exercises_v2",
+    "tactical_ongoing_workout_v2",
+    "hasSeenInstallModal",
+    "tactical_active_protocol",
+    "tactical_v1_complete_seen"
+  ],
+
+  "user_profile_structure": {
+    "name": "string",
+    "height": "number (default: 175 cm)",
+    "weight": "number (default: 75 kg)",
+    "targetWeight": "number (default: 75 kg)",
+    "bodyType": "string (default: 'Fit')"
+  },
+
+  "color_scheme": {
+    "tactical-olive": "#4B5E4B (rgb 75,94,75) — primary accent, buttons, headers",
+    "tactical-sage": "#8DA38D (rgb 141,163,141) — secondary text, borders",
+    "background_dark": "#0A0C0A — deepest background",
+    "background_primary": "#0F110F — main app background",
+    "surface_primary": "#1A1D1A — cards, modals",
+    "surface_secondary": "#151715 — headers within cards",
+    "surface_tertiary": "#1F231F — hover/active states",
+    "surface_hover": "#252A25 — button hover",
+    "border_mid": "#2A302A",
+    "border_light": "#303630",
+    "olive_dark": "#4B5E4B — dark olive (same as tactical-olive hex)",
+    "olive_mid": "#7A8F7A — mid olive for hover states",
+    "additional_darks": ["#000500", "#001500", "#002200", "#151815"]
+  },
+
+  "fonts": {
+    "font-impact": "Black Ops One (Google Fonts) — headings, day numbers, titles",
+    "font-tech": "Share Tech Mono (Google Fonts) — labels, codes, tactical UI text",
+    "font-mono": "system monospace — misc code elements"
+  },
+
+  "image_assets": {
+    "maya_avatar_1": "/Maya.png",
+    "maya_avatar_2": "/maya-2.png",
+    "front_plank_image": "/FRONT PLANK.webp",
+    "training_type_fuerza_local": "/FUERZA.webp",
+    "training_type_hiit_local": "/HIIT.webp",
+    "training_type_mixto_local": "/MIXTO.webp",
+    "training_type_fuerza_cdn": "https://res.cloudinary.com/dloltdnrm/image/upload/v1764115630/Fuerza_yj32u6.jpg",
+    "training_type_hiit_cdn": "https://res.cloudinary.com/dloltdnrm/image/upload/v1764115630/HIIT_lw5xzk.jpg",
+    "training_type_mixto_cdn": "https://res.cloudinary.com/dloltdnrm/image/upload/v1764116516/MIXTO_ytyypx.png",
+    "nutrition_section": "/Nutri.jpg",
+    "sleep_section": "/Sueno.jpg",
+    "texture_bg": "https://www.transparenttextures.com/patterns/carbon-fibre.png"
+  },
+
+  "exercise_video_library": [
+    { "name": "Bodyweight Squat", "slug": "bodyweight-squat", "videoUrl": "https://res.cloudinary.com/dloltdnrm/video/upload/v1764104399/Bodyweight_Squats_qln1lw.mp4" },
+    { "name": "Alternating Reverse Lunge", "slug": "alternating-reverse-lunge", "videoUrl": "https://res.cloudinary.com/dloltdnrm/video/upload/v1764104395/Alternating_Reverse_Lunge_tyqz1k.mp4" },
+    { "name": "Assisted Pistol Squat", "slug": "assisted-pistol-squat", "aliases": ["Assisted Pistol Squat (Assisted Single-Leg Squat)"], "videoUrl": "https://res.cloudinary.com/dloltdnrm/video/upload/v1764111436/Assisted_Pistol_Squat_achmnn.mp4" },
+    { "name": "Wall Sit", "slug": "wall-sit", "videoUrl": "https://res.cloudinary.com/dloltdnrm/video/upload/v1764111437/Wallsit_tmw0nn.mp4" },
+    { "name": "Glute Bridge", "slug": "glute-bridge", "videoUrl": "https://res.cloudinary.com/dloltdnrm/video/upload/v1764104396/Daily_10_-_Glute_Bridge_oe8wrw.mp4" },
+    { "name": "Diamond Push Up", "slug": "diamond-push-up", "videoUrl": "https://res.cloudinary.com/dloltdnrm/video/upload/v1764113606/Diamond_Pushup_m0qkly.mp4" },
+    { "name": "Jumping Jacks", "slug": "jumping-jacks", "videoUrl": "https://res.cloudinary.com/dloltdnrm/video/upload/v1764104395/Jump_jacks_pgieud.mp4" },
+    { "name": "Jump Squat", "slug": "jump-squat", "videoUrl": "https://res.cloudinary.com/dloltdnrm/video/upload/v1764104396/Jump_Squats_i0maqg.mp4" },
+    { "name": "Burpee", "slug": "burpee", "videoUrl": "https://res.cloudinary.com/dloltdnrm/video/upload/v1764104395/Burpees_hkke5w.mp4" },
+    { "name": "Mountain Climbers", "slug": "mountain-climbers", "videoUrl": "https://res.cloudinary.com/dloltdnrm/video/upload/v1764111445/Mountain_Climbers_-_Trim_fkie2a.mp4" },
+    { "name": "Push-Up", "slug": "push-up", "videoUrl": "https://res.cloudinary.com/dloltdnrm/video/upload/v1764104398/Push_Ups_re5uef.mp4" },
+    { "name": "Shoulder Tap Plank", "slug": "shoulder-tap-plank", "videoUrl": "https://res.cloudinary.com/dloltdnrm/video/upload/v1764104397/Plank_Shoulder_Taps_govtjs.mp4" },
+    { "name": "Plank with Arm Reach", "slug": "plank-with-arm-reach", "videoUrl": "https://res.cloudinary.com/dloltdnrm/video/upload/v1766005259/Plank_Arm_Reach_iksgei.mp4" },
+    { "name": "Hollow Body Hold", "slug": "hollow-body-hold", "videoUrl": "https://res.cloudinary.com/dloltdnrm/video/upload/v1764104395/Hollow_Hold_qboike.mp4" },
+    { "name": "Bird Dog", "slug": "bird-dog", "videoUrl": "https://res.cloudinary.com/dloltdnrm/video/upload/v1764104395/Bird_Dog_yflk0j.mp4" },
+    { "name": "Superman", "slug": "superman", "videoUrl": "https://res.cloudinary.com/dloltdnrm/video/upload/v1764111436/Superman_Exercise_wqftwp.mp4" },
+    { "name": "Hanging Knee Raise", "slug": "hanging-knee-raise", "videoUrl": "https://res.cloudinary.com/dloltdnrm/video/upload/v1764104398/Hanging_Knee_Raise_m5txrp.mp4" },
+    { "name": "Dead Hang", "slug": "dead-hang", "videoUrl": "https://res.cloudinary.com/dloltdnrm/video/upload/v1764104396/Dead_Hang_nj3dba.mp4" },
+    { "name": "Inverted Row", "slug": "inverted-row", "videoUrl": "https://res.cloudinary.com/dloltdnrm/video/upload/v1764104397/Pronated_Body_Row_kwg2ar.mp4" },
+    { "name": "Negative Pull-Up", "slug": "negative-pull-up", "videoUrl": "https://res.cloudinary.com/dloltdnrm/video/upload/v1764111437/Negative_Pull_Ups_etlqbh.mp4" },
+    { "name": "Dead Bug", "slug": "dead-bug", "videoUrl": "https://res.cloudinary.com/dloltdnrm/video/upload/v1764111437/deadbug_dfsusu.mp4" },
+    { "name": "High Knees", "slug": "high-knees", "aliases": ["High Knees (Running in Place)"], "videoUrl": "https://res.cloudinary.com/dloltdnrm/video/upload/v1764104400/High_Knees_crs9fg.mp4" },
+    { "name": "Walkout to Plank", "slug": "walkout-to-plank", "aliases": ["Walkout to Plank (Inchworm Walkout)"], "videoUrl": "https://res.cloudinary.com/dloltdnrm/video/upload/v1764111437/Plank_Walk_Outs_fxb3wt.mp4" },
+    { "name": "Front Plank", "slug": "front-plank", "videoUrl": "/FRONT PLANK.webp", "note": "local image only, no video" },
+    { "name": "Side Plank", "slug": "side-plank", "videoUrl": "https://res.cloudinary.com/dloltdnrm/image/upload/v1764111644/Side_plank_shcc7p.png", "note": "image only, no video" },
+    { "name": "Lateral Step March", "slug": "lateral-step-march", "aliases": ["Lateral Step March (Side Steps)"], "videoUrl": "https://res.cloudinary.com/dloltdnrm/video/upload/v1764111438/lateral_step_march_bukyrg.mp4" },
+    { "exercises_without_video": ["Assisted Bulgarian Split Squat", "Crunch", "Plank to Push-Up (Plank Up-Downs)"] }
+  ]
+}

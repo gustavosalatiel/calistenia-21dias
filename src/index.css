@@ -1,0 +1,133 @@
+/* Tailwind v4 CSS custom properties (no PostCSS plugin needed) */
+:root {
+  --color-bg-base: #0F110F;
+  --color-bg-card: #1A1D1A;
+  --color-bg-header: #151715;
+  --color-border: #2A302A;
+  --color-accent-olive: #4B5E4B;
+  --color-sage: #8DA38D;
+  --font-heading: "Black Ops One", cursive;
+  --font-mono: "Share Tech Mono", monospace;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body, #root {
+  height: 100%;
+  width: 100%;
+  background-color: #0F110F;
+  color: #e5e7eb;
+  font-family: "Share Tech Mono", monospace;
+  overflow-x: hidden;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+::-webkit-scrollbar-track {
+  background: #1A1D1A;
+}
+::-webkit-scrollbar-thumb {
+  background: #4B5E4B;
+  border-radius: 2px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #8DA38D;
+}
+
+/* Smooth scroll */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Remove tap highlight on mobile */
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+input, textarea, select {
+  background-color: #1A1D1A;
+  border: 1px solid #2A302A;
+  color: #e5e7eb;
+  font-family: "Share Tech Mono", monospace;
+  border-radius: 4px;
+  padding: 8px 12px;
+  width: 100%;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+input:focus, textarea:focus, select:focus {
+  border-color: #4B5E4B;
+}
+
+input::placeholder, textarea::placeholder {
+  color: #4B5E4B;
+}
+
+button {
+  cursor: pointer;
+  font-family: "Share Tech Mono", monospace;
+}
+
+/* Scanline effect overlay */
+.scanline {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0,0,0,0.03) 2px,
+    rgba(0,0,0,0.03) 4px
+  );
+  pointer-events: none;
+  z-index: 9999;
+}
+
+/* Glowing text */
+.glow-text {
+  text-shadow: 0 0 10px rgba(141,163,141,0.5), 0 0 20px rgba(141,163,141,0.3);
+}
+
+/* Progress bar animation */
+@keyframes progress-fill {
+  from { width: 0%; }
+  to { width: var(--target-width); }
+}
+
+/* Pulse animation */
+@keyframes pulse-green {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+.pulse-green {
+  animation: pulse-green 2s ease-in-out infinite;
+}
+
+/* Fade in */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in {
+  animation: fadeIn 0.3s ease-out forwards;
+}
+
+/* Blink cursor */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.blink {
+  animation: blink 1s step-end infinite;
+}

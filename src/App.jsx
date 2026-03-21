@@ -181,6 +181,9 @@ function App() {
         onOpenProfile={() => setProfileOpen(true)}
         onNavigate={setActiveScreen}
         onStartDay={() => handleOpenDay(nextDay)}
+        nutritionApproved={nutritionApproved}
+        sleepApproved={sleepApproved}
+        presidentialApproved={presidentialApproved}
       />
 
       {selectedDay && (

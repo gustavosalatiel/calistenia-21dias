@@ -54,22 +54,24 @@ serve(async (req: Request) => {
   try { body = await req.json() }
   catch { return new Response('Invalid JSON', { status: 400 }) }
 
-  console.log('[kiwify-webhook] Event:', body.event, '| Product:', body.data?.product?.id)
+  // Kiwify sends webhook_event_type (not event)
+  const event: string = body.webhook_event_type ?? body.event ?? ''
+  // Kiwify sends data.customer.email (not data.buyer.email)
+  const buyerEmail: string = (
+    body.data?.customer?.email ?? body.data?.buyer?.email ?? body.buyer_email ?? body.email ?? ''
+  ).toLowerCase().trim()
+  const productId: string = body.data?.product?.id ?? body.product_id ?? ''
+
+  console.log('[kiwify-webhook] Event:', event, '| Email:', buyerEmail, '| Product:', productId)
 
   // Token validation
   if (WEBHOOK_TOKEN) {
     const receivedToken = body.token ?? req.headers.get('x-kiwify-token') ?? ''
     if (receivedToken !== WEBHOOK_TOKEN) {
-      console.error('[kiwify-webhook] Invalid token')
+      console.error('[kiwify-webhook] Invalid token. Received:', receivedToken)
       return new Response('Unauthorized', { status: 401 })
     }
   }
-
-  const event: string = body.event ?? ''
-  const buyerEmail: string = (
-    body.data?.buyer?.email ?? body.buyer_email ?? body.email ?? ''
-  ).toLowerCase().trim()
-  const productId: string = body.data?.product?.id ?? body.product_id ?? ''
 
   if (!buyerEmail) {
     return new Response(JSON.stringify({ error: 'Missing buyer email' }), {

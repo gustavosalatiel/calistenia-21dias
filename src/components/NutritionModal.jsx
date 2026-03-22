@@ -1,309 +1,218 @@
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 
 const GEMINI_API_KEY = 'AIzaSyBaWw_7o8VvUp66PKvQOxtRso5bFBpjzY8'
-const GEMINI_MODEL = 'gemini-2.5-flash-lite'
+const GEMINI_MODEL   = 'gemini-2.5-flash-lite'
 
-function UpsellScreen({ onClose }) {
-  const features = [
-    'Acelera tu metabolismo x3 con plan científico',
-    'Elimina grasa visceral con alimentación estratégica',
-    'Plan 100% personalizado por IA según tu cuerpo',
-    'Macros calculados para máxima ganancia muscular',
-    'Recetas tácticas para preparación semanal',
-  ]
+const SPANISH_SPEAKING_COUNTRIES = [
+  'Argentina','Bolivia','Chile','Colombia','Costa Rica','Cuba','Ecuador',
+  'El Salvador','España','Guatemala','Honduras','México','Nicaragua','Panamá',
+  'Paraguay','Perú','Puerto Rico','República Dominicana','Uruguay','Venezuela'
+]
 
+const COUNTRY_FLAGS = {
+  'Argentina':'🇦🇷','Bolivia':'🇧🇴','Chile':'🇨🇱','Colombia':'🇨🇴','Costa Rica':'🇨🇷',
+  'Cuba':'🇨🇺','Ecuador':'🇪🇨','El Salvador':'🇸🇻','España':'🇪🇸','Guatemala':'🇬🇹',
+  'Honduras':'🇭🇳','México':'🇲🇽','Nicaragua':'🇳🇮','Panamá':'🇵🇦','Paraguay':'🇵🇾',
+  'Perú':'🇵🇪','Puerto Rico':'🇵🇷','República Dominicana':'🇩🇴','Uruguay':'🇺🇾','Venezuela':'🇻🇪'
+}
+
+const MEAL_META = {
+  desayuno: { icon: '☀️', time: '07:00', label: 'DESAYUNO' },
+  merienda: { icon: '⚡', time: '10:00', label: 'MERIENDA' },
+  almuerzo: { icon: '🍽️', time: '13:00', label: 'ALMUERZO' },
+  cena:     { icon: '🌙', time: '19:00', label: 'CENA' },
+}
+
+const MEAL_ORDER = ['desayuno','merienda','almuerzo','cena']
+
+// ── MacroBar ─────────────────────────────────────────────────────────────────
+function MacroBar({ label, value, unit, color, pct }) {
   return (
-    <div style={{
-      position: 'fixed',
-      inset: 0,
-      zIndex: 50,
-      backgroundColor: '#0F110F',
-      overflowY: 'auto',
-    }}>
-      {/* Header */}
-      <div style={{
-        position: 'sticky',
-        top: 0,
-        zIndex: 10,
-        backgroundColor: '#151715',
-        borderBottom: '1px solid #2A302A',
-        padding: '12px 16px',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-      }}>
-        <div style={{
-          fontFamily: '"Black Ops One", cursive',
-          fontSize: '16px',
-          color: '#8DA38D',
-        }}>
-          NUTRICIÓN DE COMBATE
-        </div>
-        <button
-          onClick={onClose}
-          style={{
-            backgroundColor: '#1A1D1A',
-            border: '1px solid #2A302A',
-            borderRadius: '50%',
-            width: 32,
-            height: 32,
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            cursor: 'pointer',
-            color: '#8DA38D',
-            fontSize: '16px',
-          }}
-        >
-          ✕
-        </button>
+    <div style={{ flex: 1 }}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '4px' }}>
+        <span style={{ fontFamily: '"Share Tech Mono", monospace', fontSize: '8px', color: '#4B5E4B', letterSpacing: '1px' }}>{label}</span>
+        <span style={{ fontFamily: '"Black Ops One", cursive', fontSize: '11px', color: '#fff' }}>
+          {value}<span style={{ fontSize: '8px', color: '#4B5E4B' }}>{unit}</span>
+        </span>
       </div>
-
-      <div style={{ padding: '20px', maxWidth: '480px', margin: '0 auto' }}>
-        {/* Hero */}
+      <div style={{ height: '4px', backgroundColor: '#0F110F', borderRadius: '3px', overflow: 'hidden' }}>
         <div style={{
-          backgroundColor: '#1A1D1A',
-          border: '1px solid #2A302A',
-          borderRadius: '12px',
-          overflow: 'hidden',
-          marginBottom: '20px',
-          textAlign: 'center',
-          padding: '32px 20px',
-          position: 'relative',
-        }}>
-          <div style={{
-            position: 'absolute',
-            inset: 0,
-            background: 'radial-gradient(circle at 50% 30%, rgba(75,94,75,0.1) 0%, transparent 70%)',
-            pointerEvents: 'none',
-          }} />
-          <div style={{ fontSize: '64px', marginBottom: '16px' }}>🔒</div>
-          <div style={{
-            fontFamily: '"Share Tech Mono", monospace',
-            fontSize: '10px',
-            color: '#4B5E4B',
-            letterSpacing: '3px',
-            marginBottom: '8px',
-          }}>
-            MÓDULO BLOQUEADO
-          </div>
-          <div style={{
-            fontFamily: '"Black Ops One", cursive',
-            fontSize: '22px',
-            color: '#ffffff',
-            marginBottom: '4px',
-            lineHeight: 1.2,
-          }}>
-            AL PARECER NO OBTUVISTE
-          </div>
-          <div style={{
-            fontFamily: '"Black Ops One", cursive',
-            fontSize: '22px',
-            color: '#8DA38D',
-            marginBottom: '16px',
-            lineHeight: 1.2,
-          }}>
-            ESTE MÓDULO
-          </div>
-          <p style={{
-            fontFamily: '"Share Tech Mono", monospace',
-            fontSize: '12px',
-            color: '#8DA38D',
-            lineHeight: 1.5,
-          }}>
-            El Módulo de Nutrición de Combate es la herramienta de IA más poderosa para acelerar tus resultados.
-          </p>
-        </div>
-
-        {/* Features */}
-        <div style={{
-          backgroundColor: '#1A1D1A',
-          border: '1px solid #2A302A',
-          borderRadius: '8px',
-          padding: '16px',
-          marginBottom: '20px',
-        }}>
-          <div style={{
-            fontFamily: '"Share Tech Mono", monospace',
-            fontSize: '9px',
-            color: '#4B5E4B',
-            letterSpacing: '3px',
-            marginBottom: '12px',
-          }}>
-            LO QUE INCLUYE
-          </div>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-            {features.map((feat, i) => (
-              <div key={i} style={{
-                display: 'flex',
-                alignItems: 'flex-start',
-                gap: '10px',
-              }}>
-                <div style={{
-                  width: 20,
-                  height: 20,
-                  borderRadius: '50%',
-                  backgroundColor: '#4B5E4B',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  fontSize: '10px',
-                  color: '#fff',
-                  flexShrink: 0,
-                  marginTop: '1px',
-                }}>
-                  ✓
-                </div>
-                <span style={{
-                  fontFamily: '"Share Tech Mono", monospace',
-                  fontSize: '12px',
-                  color: '#8DA38D',
-                  lineHeight: 1.4,
-                }}>
-                  {feat}
-                </span>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* CTA Button */}
-        <button
-          style={{
-            width: '100%',
-            padding: '16px',
-            backgroundColor: '#4B5E4B',
-            border: 'none',
-            borderRadius: '6px',
-            color: '#ffffff',
-            fontFamily: '"Black Ops One", cursive',
-            fontSize: '16px',
-            letterSpacing: '2px',
-            cursor: 'pointer',
-            marginBottom: '12px',
-          }}
-          onClick={() => window.open('https://wa.me/', '_blank')}
-        >
-          OBTENER ACCESO AHORA →
-        </button>
-
-        <button
-          onClick={onClose}
-          style={{
-            width: '100%',
-            padding: '12px',
-            backgroundColor: 'transparent',
-            border: '1px solid #2A302A',
-            borderRadius: '6px',
-            color: '#4B5E4B',
-            fontFamily: '"Share Tech Mono", monospace',
-            fontSize: '12px',
-            cursor: 'pointer',
-          }}
-        >
-          ← VOLVER AL CUARTEL
-        </button>
+          height: '100%',
+          width: `${Math.min(pct, 100)}%`,
+          backgroundColor: color,
+          borderRadius: '3px',
+          boxShadow: `0 0 6px ${color}55`,
+          transition: 'width 1s ease'
+        }} />
       </div>
     </div>
   )
 }
 
-// Supplement cards data
-const SUPPLEMENTS = [
-  {
-    id: 'batido',
-    icon: '⚡',
-    title: 'BATIDO DE PÓLVORA',
-    subtitle: 'VASCULARIZACIÓN PRE-COMBATE',
-    desc: 'Mezcla explosiva de 3 ingredientes para máxima vascularización.',
-    detail: 'Licuado de remolacha (200ml) + jugo de zanahoria (100ml) + jengibre rallado (1cm). Tomar 30-45 min antes del entrenamiento.',
-  },
-  {
-    id: 'nocturna',
-    icon: '🌙',
-    title: 'RACIÓN NOCTURNA',
-    subtitle: 'TESTOSTERONA Y RECUPERACIÓN',
-    desc: 'Protocolo nocturno para optimizar hormonas y quema de grasa.',
-    detail: '200g carne roja magra o 3 huevos + ½ aguacate + 100g camote cocido. Consumir 1-2h antes de dormir.',
-  },
-  {
-    id: 'clandestinos',
-    icon: '🛡️',
-    title: 'ALIMENTOS CLANDESTINOS',
-    subtitle: 'SECRETOS DE FUERZAS ESPECIALES',
-    desc: 'Lista de alimentos baratos y densos que la industria ignora.',
-    detail: 'Hígado de res • Sardinas enlatadas • Huevo entero • Lentejas • Semillas de calabaza • Avena integral • Ajo crudo • Cúrcuma',
-  },
-]
+// ── HeroStats ─────────────────────────────────────────────────────────────────
+function HeroStats({ dieta }) {
+  const totalMacroKcal = dieta.proteina * 4 + dieta.carbos * 4 + dieta.grasa * 9
+  const protPct  = Math.round((dieta.proteina * 4 / totalMacroKcal) * 100) || 0
+  const carbsPct = Math.round((dieta.carbos * 4 / totalMacroKcal) * 100) || 0
+  const fatPct   = Math.round((dieta.grasa * 9 / totalMacroKcal) * 100) || 0
 
-function SupplementCard({ card }) {
-  const [expanded, setExpanded] = useState(false)
+  return (
+    <div style={{
+      backgroundColor: '#1A1D1A',
+      border: '1px solid #2A302A',
+      borderRadius: '12px',
+      padding: '20px',
+      marginBottom: '16px',
+      position: 'relative',
+      overflow: 'hidden'
+    }}>
+      <div style={{ position: 'absolute', top: 0, right: 0, width: 140, height: 140, background: 'radial-gradient(circle, rgba(75,94,75,0.15) 0%, transparent 70%)', pointerEvents: 'none' }} />
+
+      <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '16px' }}>
+        <span style={{ fontSize: '28px' }}>{dieta.emoji}</span>
+        <div>
+          <div style={{ fontFamily: '"Black Ops One", cursive', fontSize: '18px', color: '#fff' }}>{dieta.nombre}</div>
+          <div style={{ fontFamily: '"Share Tech Mono", monospace', fontSize: '10px', color: '#4B5E4B', letterSpacing: '2px' }}>{dieta.tipo}</div>
+        </div>
+      </div>
+
+      {/* Big calorie */}
+      <div style={{ textAlign: 'center', marginBottom: '16px' }}>
+        <div style={{ fontFamily: '"Black Ops One", cursive', fontSize: '48px', color: '#4ade80', lineHeight: 1 }}>{dieta.calorias}</div>
+        <div style={{ fontFamily: '"Share Tech Mono", monospace', fontSize: '10px', color: '#4B5E4B', letterSpacing: '3px' }}>KCAL / DÍA</div>
+      </div>
+
+      {/* Stat boxes */}
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '8px', marginBottom: '16px' }}>
+        {[
+          { label: 'PROTEÍNA', value: `${dieta.proteina}g`, color: '#4ade80' },
+          { label: 'CARBOS',   value: `${dieta.carbos}g`,   color: '#eab308' },
+          { label: 'GRASA',    value: `${dieta.grasa}g`,    color: '#ef4444' },
+          { label: 'AGUA',     value: `${dieta.agua_litros}L`, color: '#38bdf8' },
+        ].map((s, i) => (
+          <div key={i} style={{ backgroundColor: '#0F110F', borderRadius: '8px', padding: '10px 6px', textAlign: 'center', border: '1px solid #2A302A' }}>
+            <div style={{ fontFamily: '"Black Ops One", cursive', fontSize: '16px', color: s.color }}>{s.value}</div>
+            <div style={{ fontFamily: '"Share Tech Mono", monospace', fontSize: '7px', color: '#4B5E4B', letterSpacing: '1px', marginTop: '2px' }}>{s.label}</div>
+          </div>
+        ))}
+      </div>
+
+      {/* Macro bars */}
+      <div style={{ display: 'flex', gap: '12px' }}>
+        <MacroBar label="PROTEÍNA" value={dieta.proteina} unit="g" color="#4ade80" pct={protPct} />
+        <MacroBar label="CARBOS"   value={dieta.carbos}   unit="g" color="#eab308" pct={carbsPct} />
+        <MacroBar label="GRASA"    value={dieta.grasa}    unit="g" color="#ef4444" pct={fatPct} />
+      </div>
+
+      {/* Tags */}
+      {dieta.tags && dieta.tags.length > 0 && (
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px', marginTop: '14px' }}>
+          {dieta.tags.map((tag, i) => (
+            <span key={i} style={{
+              backgroundColor: '#0F110F',
+              border: '1px solid #4B5E4B',
+              borderRadius: '20px',
+              padding: '3px 10px',
+              fontFamily: '"Share Tech Mono", monospace',
+              fontSize: '9px',
+              color: '#4B5E4B',
+              letterSpacing: '1px'
+            }}>{tag}</span>
+          ))}
+        </div>
+      )}
+
+      {dieta.tmb && (
+        <div style={{ marginTop: '12px', fontFamily: '"Share Tech Mono", monospace', fontSize: '9px', color: '#4B5E4B' }}>
+          TMB: <span style={{ color: '#c8a84b' }}>{dieta.tmb} kcal/día</span>
+        </div>
+      )}
+    </div>
+  )
+}
+
+// ── MealSection ───────────────────────────────────────────────────────────────
+function MealSection({ mealKey, meal }) {
+  const meta = MEAL_META[mealKey] || { icon: '🍴', time: '--:--', label: mealKey.toUpperCase() }
 
   return (
     <div style={{
       backgroundColor: '#1A1D1A',
       border: '1px solid #2A302A',
       borderRadius: '10px',
-      overflow: 'hidden',
-      cursor: 'pointer',
-      transition: 'border-color 0.2s',
-    }}
-      onClick={() => setExpanded((e) => !e)}
-    >
-      <div style={{ padding: '16px' }}>
-        <div style={{ fontSize: '28px', marginBottom: '10px' }}>{card.icon}</div>
-        <div style={{
-          fontFamily: '"Black Ops One", cursive',
-          fontSize: '13px',
-          color: '#ffffff',
-          letterSpacing: '1px',
-          marginBottom: '3px',
-        }}>
-          {card.title}
+      padding: '16px',
+      marginBottom: '10px'
+    }}>
+      {/* Header */}
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '10px' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+          <span style={{ fontSize: '20px' }}>{meta.icon}</span>
+          <div>
+            <div style={{ fontFamily: '"Black Ops One", cursive', fontSize: '12px', color: '#4B5E4B', letterSpacing: '2px' }}>{meta.label}</div>
+            <div style={{ fontFamily: '"Share Tech Mono", monospace', fontSize: '9px', color: '#4B5E4B' }}>{meta.time}</div>
+          </div>
         </div>
-        <div style={{
-          fontFamily: '"Share Tech Mono", monospace',
-          fontSize: '9px',
-          color: '#4B5E4B',
-          letterSpacing: '1px',
-          marginBottom: '8px',
-        }}>
-          {card.subtitle}
-        </div>
-        <div style={{
-          fontFamily: '"Share Tech Mono", monospace',
-          fontSize: '11px',
-          color: '#8DA38D',
-          lineHeight: 1.5,
-          marginBottom: '12px',
-        }}>
-          {card.desc}
-        </div>
-        <div style={{
-          fontFamily: '"Share Tech Mono", monospace',
-          fontSize: '9px',
-          color: '#4B5E4B',
-          letterSpacing: '1px',
-          borderTop: '1px solid #2A302A',
-          paddingTop: '10px',
-        }}>
-          CLICK PARA ACCEDER ›
-        </div>
-      </div>
-
-      {expanded && (
         <div style={{
           backgroundColor: '#0F110F',
-          borderTop: '1px solid #2A302A',
-          padding: '14px 16px',
-        }}>
-          <div style={{
-            fontFamily: '"Share Tech Mono", monospace',
-            fontSize: '11px',
-            color: '#8DA38D',
-            lineHeight: 1.6,
+          border: '1px solid #4ade8033',
+          borderRadius: '20px',
+          padding: '4px 10px',
+          fontFamily: '"Black Ops One", cursive',
+          fontSize: '13px',
+          color: '#4ade80'
+        }}>{meal.kcal} kcal</div>
+      </div>
+
+      {/* Meal name + description */}
+      <div style={{ marginBottom: '10px' }}>
+        <div style={{ fontFamily: '"Black Ops One", cursive', fontSize: '14px', color: '#fff', marginBottom: '4px' }}>{meal.nombre}</div>
+        <div style={{ fontFamily: '"Share Tech Mono", monospace', fontSize: '10px', color: '#8DA38D', lineHeight: 1.5 }}>{meal.descripcion}</div>
+      </div>
+
+      {/* Macro boxes */}
+      <div style={{ display: 'flex', gap: '8px', marginBottom: '12px' }}>
+        {[
+          { label: 'PROT', value: meal.proteina_g, color: '#4ade80' },
+          { label: 'CARB', value: meal.carbos_g,   color: '#eab308' },
+          { label: 'GRAS', value: meal.grasa_g,    color: '#ef4444' },
+        ].map((m, i) => (
+          <div key={i} style={{
+            flex: 1,
+            backgroundColor: '#0F110F',
+            borderRadius: '6px',
+            padding: '8px 6px',
+            textAlign: 'center',
+            border: `1px solid ${m.color}22`
           }}>
-            {card.detail}
+            <div style={{ fontFamily: '"Black Ops One", cursive', fontSize: '15px', color: m.color }}>{m.value}g</div>
+            <div style={{ fontFamily: '"Share Tech Mono", monospace', fontSize: '7px', color: '#4B5E4B', letterSpacing: '1px', marginTop: '1px' }}>{m.label}</div>
+          </div>
+        ))}
+      </div>
+
+      {/* Ingredient section */}
+      {meal.ingredientes && meal.ingredientes.length > 0 && (
+        <div style={{ borderTop: '1px solid #2A302A', paddingTop: '12px', marginTop: '4px' }}>
+          <div style={{ fontFamily: '"Share Tech Mono", monospace', fontSize: '9px', color: '#4B5E4B', letterSpacing: '3px', marginBottom: '10px' }}>🥦 INGREDIENTES</div>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
+            {meal.ingredientes.map((ing, i) => (
+              <span key={i} style={{
+                backgroundColor: '#0F1A0F',
+                border: '1px solid #3A5A3A',
+                borderRadius: '8px',
+                padding: '8px 14px',
+                fontFamily: '"Share Tech Mono", monospace',
+                fontSize: '13px',
+                color: '#C8E6C8',
+                letterSpacing: '0.5px',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '6px'
+              }}>
+                <span style={{ color: '#4ade80', fontSize: '10px' }}>▸</span>
+                {ing}
+              </span>
+            ))}
           </div>
         </div>
       )}
@@ -311,497 +220,515 @@ function SupplementCard({ card }) {
   )
 }
 
-function StatsCards({ data }) {
-  const stats = [
-    { label: 'CALORÍAS DIARIAS', value: data.calorias, unit: 'kcal' },
-    { label: 'PROTEÍNA OBJETIVO', value: `${data.proteina}g`, unit: '' },
-    { label: 'TASA METABÓLICA', value: Math.round(data.tmb), unit: 'kcal/reposo' },
-  ]
+// ── DietCard ──────────────────────────────────────────────────────────────────
+function DietCard({ dieta, selected, onSelect }) {
+  const totalMacroKcal = dieta.proteina * 4 + dieta.carbos * 4 + dieta.grasa * 9
+  const protPct  = Math.round((dieta.proteina * 4 / totalMacroKcal) * 100) || 0
+  const carbsPct = Math.round((dieta.carbos * 4 / totalMacroKcal) * 100) || 0
+  const fatPct   = Math.round((dieta.grasa * 9 / totalMacroKcal) * 100) || 0
+
   return (
-    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '10px', marginBottom: '20px' }}>
-      {stats.map((s) => (
-        <div key={s.label} style={{
-          backgroundColor: '#1A1D1A',
-          border: '1px solid #2A302A',
-          borderRadius: '8px',
-          padding: '12px 10px',
-          textAlign: 'center',
-        }}>
+    <div
+      onClick={() => onSelect(dieta)}
+      style={{
+        backgroundColor: selected ? '#1a2a1a' : '#1A1D1A',
+        border: `1px solid ${selected ? '#4B5E4B' : '#2A302A'}`,
+        borderLeft: `4px solid ${selected ? '#4ade80' : '#2A302A'}`,
+        borderRadius: '10px',
+        padding: '14px',
+        marginBottom: '8px',
+        cursor: 'pointer',
+        display: 'flex',
+        alignItems: 'center',
+        gap: '12px',
+        transition: 'all 0.2s ease',
+      }}
+    >
+      {/* Left: emoji + name + type */}
+      <div style={{ display: 'flex', alignItems: 'center', gap: '10px', flex: 1, minWidth: 0 }}>
+        <span style={{ fontSize: '28px', flexShrink: 0 }}>{dieta.emoji}</span>
+        <div style={{ minWidth: 0 }}>
           <div style={{
             fontFamily: '"Black Ops One", cursive',
-            fontSize: '18px',
-            color: '#ffffff',
+            fontSize: '13px',
+            color: '#fff',
             marginBottom: '4px',
-            lineHeight: 1,
-          }}>
-            {s.value}
-          </div>
-          {s.unit && (
-            <div style={{
+            whiteSpace: 'nowrap',
+            overflow: 'hidden',
+            textOverflow: 'ellipsis'
+          }}>{dieta.nombre}</div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+            <span style={{
+              backgroundColor: '#4B5E4B22',
+              border: '1px solid #4B5E4B55',
+              borderRadius: '20px',
+              padding: '2px 8px',
               fontFamily: '"Share Tech Mono", monospace',
               fontSize: '8px',
               color: '#4B5E4B',
-              letterSpacing: '1px',
-              marginBottom: '4px',
-            }}>
-              {s.unit}
-            </div>
-          )}
-          <div style={{
-            fontFamily: '"Share Tech Mono", monospace',
-            fontSize: '7px',
-            color: '#4B5E4B',
-            letterSpacing: '1px',
-          }}>
-            {s.label}
+              letterSpacing: '1px'
+            }}>{dieta.tipo}</span>
           </div>
         </div>
-      ))}
-    </div>
-  )
-}
-
-function MealSection({ mealKey, mealLabel, options }) {
-  const [tab, setTab] = useState(0)
-  const option = options[tab]
-
-  return (
-    <div style={{ marginBottom: '16px' }}>
-      {/* Meal header */}
-      <div style={{
-        fontFamily: '"Share Tech Mono", monospace',
-        fontSize: '9px',
-        color: '#4B5E4B',
-        letterSpacing: '2px',
-        marginBottom: '8px',
-      }}>
-        {mealLabel}
       </div>
 
-      {/* Tab switcher */}
-      <div style={{
-        display: 'flex',
-        gap: '8px',
-        marginBottom: '10px',
-      }}>
-        {options.map((_, i) => (
-          <button
-            key={i}
-            onClick={() => setTab(i)}
-            style={{
-              flex: 1,
-              padding: '6px',
-              backgroundColor: tab === i ? '#4B5E4B' : '#1A1D1A',
-              border: `1px solid ${tab === i ? '#4B5E4B' : '#2A302A'}`,
-              borderRadius: '4px',
-              color: tab === i ? '#ffffff' : '#8DA38D',
-              fontFamily: '"Share Tech Mono", monospace',
-              fontSize: '9px',
-              letterSpacing: '1px',
-              cursor: 'pointer',
-            }}
-          >
-            OPCIÓN {i + 1}
-          </button>
+      {/* Middle: micro bars */}
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '5px', width: '100px', flexShrink: 0 }}>
+        {[
+          { label: 'P', value: dieta.proteina, color: '#4ade80', pct: protPct },
+          { label: 'C', value: dieta.carbos,   color: '#eab308', pct: carbsPct },
+          { label: 'G', value: dieta.grasa,    color: '#ef4444', pct: fatPct },
+        ].map((m, i) => (
+          <div key={i} style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
+            <span style={{ fontFamily: '"Share Tech Mono", monospace', fontSize: '7px', color: '#4B5E4B', width: '8px' }}>{m.label}</span>
+            <div style={{ flex: 1, height: '3px', backgroundColor: '#0F110F', borderRadius: '2px', overflow: 'hidden' }}>
+              <div style={{ height: '100%', width: `${Math.min(m.pct, 100)}%`, backgroundColor: m.color, borderRadius: '2px' }} />
+            </div>
+            <span style={{ fontFamily: '"Share Tech Mono", monospace', fontSize: '7px', color: '#8DA38D', width: '28px', textAlign: 'right' }}>{m.value}g</span>
+          </div>
         ))}
       </div>
 
-      {/* Meal card */}
-      <div style={{
-        backgroundColor: '#1A1D1A',
-        border: '1px solid #2A302A',
-        borderRadius: '8px',
-        padding: '14px',
-      }}>
-        <div style={{
-          fontFamily: '"Black Ops One", cursive',
-          fontSize: '13px',
-          color: '#ffffff',
-          marginBottom: '4px',
-          letterSpacing: '1px',
-        }}>
-          {option.nombre}
-        </div>
-        <div style={{
-          fontFamily: '"Share Tech Mono", monospace',
-          fontSize: '10px',
-          color: '#8DA38D',
-          marginBottom: '10px',
-        }}>
-          {option.descripcion}
-        </div>
-        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px' }}>
-          {option.ingredientes.map((ing, idx) => (
-            <span key={idx} style={{
-              backgroundColor: '#0F110F',
-              border: '1px solid #2A302A',
-              borderRadius: '4px',
-              padding: '3px 8px',
-              fontFamily: '"Share Tech Mono", monospace',
-              fontSize: '9px',
-              color: '#8DA38D',
-            }}>
-              {ing}
-            </span>
-          ))}
-        </div>
+      {/* Right: kcal + arrow */}
+      <div style={{ flexShrink: 0, textAlign: 'right' }}>
+        <div style={{ fontFamily: '"Black Ops One", cursive', fontSize: '14px', color: '#4ade80' }}>{dieta.calorias}</div>
+        <div style={{ fontFamily: '"Share Tech Mono", monospace', fontSize: '7px', color: '#4B5E4B' }}>kcal</div>
+        <div style={{ color: '#4B5E4B', fontSize: '14px', marginTop: '4px' }}>{selected ? '✓' : '›'}</div>
       </div>
     </div>
   )
 }
 
-function StructuredPlan({ data }) {
-  const meals = [
-    { key: 'desayuno', label: 'DESAYUNO' },
-    { key: 'almuerzo', label: 'ALMUERZO' },
-    { key: 'cena', label: 'CENA' },
-  ]
+// ── ConfigModal ───────────────────────────────────────────────────────────────
+function ConfigModal({ open, onClose, onSubmit, profile, loading }) {
+  const [sex, setSex] = useState('MASCULINO')
+  const [age, setAge] = useState('')
+  const [country, setCountry] = useState('México')
+  const [activity, setActivity] = useState('Moderado (3-5x por semana)')
+  const [goal, setGoal] = useState('Perda de Gordura')
+  const [restrictions, setRestrictions] = useState('')
+
+  if (!open) return null
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    onSubmit({ sex, age, country, activity, goal, restrictions })
+  }
+
+  const inputStyle = {
+    width: '100%',
+    backgroundColor: '#0F110F',
+    border: '1px solid #2A302A',
+    borderRadius: '6px',
+    padding: '10px 12px',
+    fontFamily: '"Share Tech Mono", monospace',
+    fontSize: '12px',
+    color: '#fff',
+    outline: 'none',
+    boxSizing: 'border-box'
+  }
+
+  const labelStyle = {
+    fontFamily: '"Share Tech Mono", monospace',
+    fontSize: '9px',
+    color: '#4B5E4B',
+    letterSpacing: '2px',
+    marginBottom: '6px',
+    display: 'block'
+  }
+
+  return (
+    <div style={{
+      position: 'fixed', inset: 0, zIndex: 200,
+      backgroundColor: 'rgba(0,0,0,0.85)',
+      display: 'flex', alignItems: 'center', justifyContent: 'center',
+      padding: '16px'
+    }}>
+      <div style={{
+        backgroundColor: '#151715',
+        border: '1px solid #2A302A',
+        borderRadius: '14px',
+        width: '100%',
+        maxWidth: '440px',
+        maxHeight: '90vh',
+        overflowY: 'auto',
+        padding: '24px'
+      }}>
+        {/* Title */}
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '20px' }}>
+          <div>
+            <div style={{ fontFamily: '"Black Ops One", cursive', fontSize: '18px', color: '#fff' }}>🍴 CONFIGURAR PLANO</div>
+            <div style={{ fontFamily: '"Share Tech Mono", monospace', fontSize: '9px', color: '#4B5E4B', letterSpacing: '2px', marginTop: '2px' }}>PERSONALIZACIÓN TÁCTICA</div>
+          </div>
+          <button onClick={onClose} style={{ backgroundColor: 'transparent', border: '1px solid #2A302A', borderRadius: '50%', width: 32, height: 32, color: '#8DA38D', cursor: 'pointer', fontSize: '16px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>✕</button>
+        </div>
+
+        {/* Profile preview cards */}
+        {profile && (
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '6px', marginBottom: '20px' }}>
+            {[
+              { label: 'PESO', value: `${profile.weight}kg` },
+              { label: 'META', value: `${profile.targetWeight}kg` },
+              { label: 'ALTURA', value: `${profile.height}cm` },
+              { label: 'BIÓTIPO', value: profile.biotype },
+            ].map((c, i) => (
+              <div key={i} style={{ backgroundColor: '#0F110F', border: '1px solid #2A302A', borderRadius: '6px', padding: '8px 6px', textAlign: 'center' }}>
+                <div style={{ fontFamily: '"Black Ops One", cursive', fontSize: '13px', color: '#c8a84b' }}>{c.value}</div>
+                <div style={{ fontFamily: '"Share Tech Mono", monospace', fontSize: '7px', color: '#4B5E4B', letterSpacing: '1px', marginTop: '2px' }}>{c.label}</div>
+              </div>
+            ))}
+          </div>
+        )}
+
+        <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
+          {/* Sex toggle */}
+          <div>
+            <label style={labelStyle}>SEXO</label>
+            <div style={{ display: 'flex', gap: '8px' }}>
+              {['MASCULINO','FEMININO'].map(s => (
+                <button
+                  key={s}
+                  type="button"
+                  onClick={() => setSex(s)}
+                  style={{
+                    flex: 1,
+                    padding: '10px',
+                    backgroundColor: sex === s ? '#4B5E4B' : '#0F110F',
+                    border: `1px solid ${sex === s ? '#4B5E4B' : '#2A302A'}`,
+                    borderRadius: '6px',
+                    color: sex === s ? '#fff' : '#4B5E4B',
+                    fontFamily: '"Black Ops One", cursive',
+                    fontSize: '12px',
+                    cursor: 'pointer',
+                    transition: 'all 0.2s'
+                  }}
+                >{s === 'MASCULINO' ? '♂ MASCULINO' : '♀ FEMININO'}</button>
+              ))}
+            </div>
+          </div>
+
+          {/* Age */}
+          <div>
+            <label style={labelStyle}>EDAD</label>
+            <input
+              type="number"
+              value={age}
+              onChange={e => setAge(e.target.value)}
+              placeholder="Ej: 28"
+              required
+              min="10"
+              max="100"
+              style={inputStyle}
+            />
+          </div>
+
+          {/* Country */}
+          <div>
+            <label style={labelStyle}>PAÍS</label>
+            <select
+              value={country}
+              onChange={e => setCountry(e.target.value)}
+              style={inputStyle}
+            >
+              {SPANISH_SPEAKING_COUNTRIES.map(c => (
+                <option key={c} value={c}>{COUNTRY_FLAGS[c]} {c}</option>
+              ))}
+            </select>
+          </div>
+
+          {/* Activity */}
+          <div>
+            <label style={labelStyle}>NIVEL DE ACTIVIDAD</label>
+            <select value={activity} onChange={e => setActivity(e.target.value)} style={inputStyle}>
+              <option>Sedentario</option>
+              <option>Ligero (1-3x por semana)</option>
+              <option>Moderado (3-5x por semana)</option>
+              <option>Activo (5-6x por semana)</option>
+              <option>Muy Activo (diario)</option>
+            </select>
+          </div>
+
+          {/* Goal */}
+          <div>
+            <label style={labelStyle}>OBJETIVO</label>
+            <select value={goal} onChange={e => setGoal(e.target.value)} style={inputStyle}>
+              <option>Perda de Gordura</option>
+              <option>Ganancia Muscular</option>
+              <option>Recomposición Corporal</option>
+              <option>Mantenimiento</option>
+            </select>
+          </div>
+
+          {/* Restrictions */}
+          <div>
+            <label style={labelStyle}>RESTRICCIONES ALIMENTARIAS</label>
+            <textarea
+              value={restrictions}
+              onChange={e => setRestrictions(e.target.value)}
+              placeholder="ej: sin lactosa, vegetariano..."
+              rows={2}
+              style={{ ...inputStyle, resize: 'vertical', lineHeight: 1.5 }}
+            />
+          </div>
+
+          {/* Submit */}
+          <button
+            type="submit"
+            disabled={loading}
+            style={{
+              padding: '14px',
+              backgroundColor: loading ? '#2A302A' : '#4B5E4B',
+              border: 'none',
+              borderRadius: '6px',
+              color: '#fff',
+              fontFamily: '"Black Ops One", cursive',
+              fontSize: '15px',
+              letterSpacing: '2px',
+              cursor: loading ? 'not-allowed' : 'pointer',
+              marginTop: '4px',
+              transition: 'background-color 0.2s'
+            }}
+          >
+            {loading ? '⏳ GENERANDO...' : '⚡ GENERAR 10 PLANES'}
+          </button>
+        </form>
+      </div>
+    </div>
+  )
+}
+
+// ── ShoppingList ──────────────────────────────────────────────────────────────
+function ShoppingList({ dieta }) {
+  const [checked, setChecked] = useState({})
+
+  // Aggregate all ingredients
+  const allIngredients = []
+  MEAL_ORDER.forEach(mealKey => {
+    const meal = dieta.comidas[mealKey]
+    if (meal && meal.ingredientes) {
+      meal.ingredientes.forEach(ing => {
+        if (!allIngredients.includes(ing)) {
+          allIngredients.push(ing)
+        }
+      })
+    }
+  })
+
+  const toggle = (ing) => setChecked(prev => ({ ...prev, [ing]: !prev[ing] }))
+  const doneCount = Object.values(checked).filter(Boolean).length
 
   return (
     <div>
-      <StatsCards data={data} />
-      {meals.map((m) => (
-        data.comidas[m.key] && data.comidas[m.key].length > 0 ? (
-          <MealSection
-            key={m.key}
-            mealKey={m.key}
-            mealLabel={m.label}
-            options={data.comidas[m.key]}
-          />
-        ) : null
-      ))}
-    </div>
-  )
-}
-
-function FallbackPlan({ text }) {
-  return (
-    <div style={{
-      backgroundColor: '#1A1D1A',
-      border: '1px solid #2A302A',
-      borderRadius: '8px',
-      padding: '16px',
-      marginBottom: '16px',
-    }}>
-      <div style={{
-        fontFamily: '"Share Tech Mono", monospace',
-        fontSize: '9px',
-        color: '#4B5E4B',
-        letterSpacing: '3px',
-        marginBottom: '12px',
-      }}>
-        PLAN NUTRICIONAL TÁCTICO
-      </div>
-      <pre style={{
-        fontFamily: '"Share Tech Mono", monospace',
-        fontSize: '11px',
-        color: '#8DA38D',
-        lineHeight: 1.6,
-        whiteSpace: 'pre-wrap',
-        wordBreak: 'break-word',
-        margin: 0,
-      }}>
-        {text}
-      </pre>
-    </div>
-  )
-}
-
-function ConfigModal({ profile, form, setForm, onClose, onGenerate, loading, error }) {
-  return (
-    <div style={{
-      position: 'fixed',
-      inset: 0,
-      zIndex: 60,
-      backgroundColor: 'rgba(0,0,0,0.85)',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      padding: '24px 16px',
-    }}>
       <div style={{
         backgroundColor: '#1A1D1A',
         border: '1px solid #2A302A',
         borderRadius: '12px',
-        width: '100%',
-        maxWidth: '440px',
-        padding: '24px',
-        position: 'relative',
+        padding: '20px',
+        marginBottom: '16px'
       }}>
-        {/* Close button */}
-        <button
-          onClick={onClose}
-          style={{
-            position: 'absolute',
-            top: '12px',
-            right: '12px',
-            width: '28px',
-            height: '28px',
-            backgroundColor: '#0F110F',
-            border: '1px solid #2A302A',
-            borderRadius: '50%',
-            color: '#8DA38D',
-            fontSize: '14px',
-            cursor: 'pointer',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-          }}
-        >
-          ✕
-        </button>
-
-        {/* Icon */}
-        <div style={{ fontSize: '32px', textAlign: 'center', marginBottom: '12px' }}>🍴</div>
-
-        {/* Title */}
-        <div style={{
-          fontFamily: '"Black Ops One", cursive',
-          fontSize: '18px',
-          color: '#ffffff',
-          textAlign: 'center',
-          letterSpacing: '1px',
-          marginBottom: '6px',
-        }}>
-          CONFIGURACIÓN DE SUMINISTROS
-        </div>
-        <div style={{
-          fontFamily: '"Share Tech Mono", monospace',
-          fontSize: '10px',
-          color: '#4B5E4B',
-          textAlign: 'center',
-          letterSpacing: '1px',
-          marginBottom: '20px',
-          lineHeight: 1.4,
-        }}>
-          LA IA TÁCTICA CALCULARÁ TUS REQUERIMIENTOS EXACTOS.
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '16px' }}>
+          <div>
+            <div style={{ fontFamily: '"Black Ops One", cursive', fontSize: '16px', color: '#fff' }}>🛒 LISTA DE COMPRAS</div>
+            <div style={{ fontFamily: '"Share Tech Mono", monospace', fontSize: '9px', color: '#4B5E4B', letterSpacing: '2px', marginTop: '2px' }}>{dieta.nombre}</div>
+          </div>
+          <div style={{ fontFamily: '"Black Ops One", cursive', fontSize: '13px', color: '#4ade80' }}>
+            {doneCount}/{allIngredients.length}
+          </div>
         </div>
 
-        {/* Read-only rows */}
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', marginBottom: '16px' }}>
-          {[
-            { label: 'PESO ACTUAL', value: `${profile?.weight || form.weight || '—'} KG` },
-            { label: 'OBJETIVO', value: `${profile?.targetWeight || form.targetWeight || '—'} KG` },
-          ].map((row) => (
-            <div key={row.label} style={{
-              backgroundColor: '#0F110F',
-              border: '1px solid #2A302A',
-              borderRadius: '6px',
-              padding: '10px 14px',
-              display: 'flex',
-              justifyContent: 'space-between',
-              alignItems: 'center',
-            }}>
+        {/* Progress bar */}
+        <div style={{ height: '4px', backgroundColor: '#0F110F', borderRadius: '3px', marginBottom: '16px', overflow: 'hidden' }}>
+          <div style={{
+            height: '100%',
+            width: `${allIngredients.length ? (doneCount / allIngredients.length) * 100 : 0}%`,
+            backgroundColor: '#4ade80',
+            borderRadius: '3px',
+            transition: 'width 0.4s ease'
+          }} />
+        </div>
+
+        {/* Ingredient list */}
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+          {allIngredients.map((ing, i) => (
+            <div
+              key={i}
+              onClick={() => toggle(ing)}
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '12px',
+                padding: '10px 12px',
+                backgroundColor: checked[ing] ? '#0F110F' : '#151715',
+                border: `1px solid ${checked[ing] ? '#4ade8022' : '#2A302A'}`,
+                borderRadius: '8px',
+                cursor: 'pointer',
+                transition: 'all 0.15s'
+              }}
+            >
+              <div style={{
+                width: 18,
+                height: 18,
+                borderRadius: '4px',
+                border: `2px solid ${checked[ing] ? '#4ade80' : '#4B5E4B'}`,
+                backgroundColor: checked[ing] ? '#4ade80' : 'transparent',
+                flexShrink: 0,
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                fontSize: '11px',
+                color: '#0F110F',
+                transition: 'all 0.15s'
+              }}>{checked[ing] ? '✓' : ''}</div>
               <span style={{
                 fontFamily: '"Share Tech Mono", monospace',
-                fontSize: '9px',
-                color: '#4B5E4B',
-                letterSpacing: '1px',
-              }}>
-                {row.label}
-              </span>
-              <span style={{
-                fontFamily: '"Black Ops One", cursive',
-                fontSize: '14px',
-                color: '#8DA38D',
-              }}>
-                {row.value}
-              </span>
+                fontSize: '12px',
+                color: checked[ing] ? '#4B5E4B' : '#8DA38D',
+                textDecoration: checked[ing] ? 'line-through' : 'none',
+                transition: 'all 0.15s'
+              }}>{ing}</span>
             </div>
           ))}
         </div>
-
-        {/* Editable inputs */}
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', marginBottom: '16px' }}>
-          <div>
-            <label style={{
-              display: 'block',
-              fontFamily: '"Share Tech Mono", monospace',
-              fontSize: '8px',
-              color: '#4B5E4B',
-              letterSpacing: '1px',
-              marginBottom: '5px',
-            }}>
-              EDAD DEL OPERADOR *
-            </label>
-            <input
-              type="number"
-              value={form.age}
-              onChange={(e) => setForm((f) => ({ ...f, age: e.target.value }))}
-              placeholder="Ej: 25"
-              style={{
-                width: '100%',
-                backgroundColor: '#0F110F',
-                border: '1px solid #2A302A',
-                borderRadius: '4px',
-                padding: '10px 12px',
-                color: '#e5e7eb',
-                fontFamily: '"Share Tech Mono", monospace',
-                fontSize: '13px',
-                outline: 'none',
-                boxSizing: 'border-box',
-              }}
-            />
-          </div>
-          <div>
-            <label style={{
-              display: 'block',
-              fontFamily: '"Share Tech Mono", monospace',
-              fontSize: '8px',
-              color: '#4B5E4B',
-              letterSpacing: '1px',
-              marginBottom: '5px',
-            }}>
-              ALERGIAS / RESTRICCIONES (OPCIONAL)
-            </label>
-            <input
-              type="text"
-              value={form.restrictions}
-              onChange={(e) => setForm((f) => ({ ...f, restrictions: e.target.value }))}
-              placeholder="ej: sin lactosa, alérgico a nueces..."
-              style={{
-                width: '100%',
-                backgroundColor: '#0F110F',
-                border: '1px solid #2A302A',
-                borderRadius: '4px',
-                padding: '10px 12px',
-                color: '#e5e7eb',
-                fontFamily: '"Share Tech Mono", monospace',
-                fontSize: '13px',
-                outline: 'none',
-                boxSizing: 'border-box',
-              }}
-            />
-          </div>
-        </div>
-
-        {error && (
-          <div style={{
-            backgroundColor: 'rgba(220,38,38,0.1)',
-            border: '1px solid rgba(220,38,38,0.3)',
-            borderRadius: '4px',
-            padding: '10px 12px',
-            marginBottom: '12px',
-            fontFamily: '"Share Tech Mono", monospace',
-            fontSize: '11px',
-            color: '#f87171',
-          }}>
-            ⚠ {error}
-          </div>
-        )}
-
-        <button
-          onClick={onGenerate}
-          disabled={loading}
-          style={{
-            width: '100%',
-            padding: '14px',
-            backgroundColor: loading ? '#2A302A' : '#4B5E4B',
-            border: 'none',
-            borderRadius: '6px',
-            color: loading ? '#8DA38D' : '#ffffff',
-            fontFamily: '"Black Ops One", cursive',
-            fontSize: '14px',
-            letterSpacing: '2px',
-            cursor: loading ? 'not-allowed' : 'pointer',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            gap: '8px',
-          }}
-        >
-          {loading ? (
-            <>
-              <div style={{
-                width: 14,
-                height: 14,
-                border: '2px solid #8DA38D',
-                borderTopColor: 'transparent',
-                borderRadius: '50%',
-                animation: 'spin 0.8s linear infinite',
-              }} />
-              GENERANDO PLAN...
-            </>
-          ) : (
-            'GENERAR PLAN TÁCTICO'
-          )}
-        </button>
       </div>
     </div>
   )
 }
 
-export default function NutritionModal({ approved, onClose, userEmail, profile }) {
-  const [form, setForm] = useState({
-    age: '',
-    restrictions: '',
-  })
+// ── SupplementCard ────────────────────────────────────────────────────────────
+function SupplementCard({ icon, name, dose, timing, benefit, priority }) {
+  const priorityColors = { high: '#ef4444', medium: '#eab308', low: '#4ade80' }
+  return (
+    <div style={{
+      backgroundColor: '#1A1D1A',
+      border: '1px solid #2A302A',
+      borderRadius: '10px',
+      padding: '16px',
+      marginBottom: '10px'
+    }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '10px' }}>
+        <span style={{ fontSize: '24px' }}>{icon}</span>
+        <div style={{ flex: 1 }}>
+          <div style={{ fontFamily: '"Black Ops One", cursive', fontSize: '14px', color: '#fff' }}>{name}</div>
+          <div style={{ fontFamily: '"Share Tech Mono", monospace', fontSize: '9px', color: '#4B5E4B', marginTop: '2px' }}>{dose}</div>
+        </div>
+        <div style={{
+          backgroundColor: `${priorityColors[priority]}22`,
+          border: `1px solid ${priorityColors[priority]}55`,
+          borderRadius: '20px',
+          padding: '3px 8px',
+          fontFamily: '"Share Tech Mono", monospace',
+          fontSize: '7px',
+          color: priorityColors[priority],
+          letterSpacing: '1px'
+        }}>{priority.toUpperCase()}</div>
+      </div>
+      <div style={{ fontFamily: '"Share Tech Mono", monospace', fontSize: '10px', color: '#8DA38D', lineHeight: 1.5, marginBottom: '6px' }}>{benefit}</div>
+      <div style={{ fontFamily: '"Share Tech Mono", monospace', fontSize: '9px', color: '#4B5E4B' }}>⏰ {timing}</div>
+    </div>
+  )
+}
+
+function ArsenalTab() {
+  const supplements = [
+    { icon: '💊', name: 'CREATINA MONOHIDRATO', dose: '5g / día', timing: 'Post-entrenamiento o con comida', benefit: 'Aumenta fuerza, potencia y volumen muscular. El suplemento más estudiado y efectivo.', priority: 'high' },
+    { icon: '🥛', name: 'PROTEÍNA WHEY', dose: '25-30g / post-entrenamiento', timing: 'Dentro de 30 min post-entrenamiento', benefit: 'Estimula síntesis proteica muscular. Recuperación y crecimiento acelerado.', priority: 'high' },
+    { icon: '⚡', name: 'CAFEÍNA', dose: '200-400mg / pre-entreno', timing: '30-45 min antes del entrenamiento', benefit: 'Aumenta rendimiento, fuerza y quema de grasa. Reduce percepción de fatiga.', priority: 'medium' },
+    { icon: '🐟', name: 'OMEGA-3', dose: '2-3g EPA+DHA / día', timing: 'Con comida principal', benefit: 'Reduce inflamación, mejora recuperación y salud cardiovascular.', priority: 'medium' },
+    { icon: '☀️', name: 'VITAMINA D3', dose: '2000-4000 IU / día', timing: 'Mañana con grasa', benefit: 'Regula testosterona, función inmune y salud ósea. Deficiencia muy común.', priority: 'medium' },
+    { icon: '😴', name: 'MAGNESIO GLICINATO', dose: '300-400mg / noche', timing: '30-60 min antes de dormir', benefit: 'Mejora calidad del sueño, recuperación muscular y reduce cortisol.', priority: 'low' },
+  ]
+  return (
+    <div>
+      <div style={{ backgroundColor: '#1A1D1A', border: '1px solid #2A302A', borderRadius: '10px', padding: '14px', marginBottom: '16px' }}>
+        <div style={{ fontFamily: '"Share Tech Mono", monospace', fontSize: '9px', color: '#4B5E4B', letterSpacing: '2px', marginBottom: '4px' }}>// ARSENAL SUPLEMENTARIO //</div>
+        <div style={{ fontFamily: '"Share Tech Mono", monospace', fontSize: '11px', color: '#8DA38D', lineHeight: 1.5 }}>Suplementos ordenados por prioridad científica para maximizar resultados.</div>
+      </div>
+      {supplements.map((s, i) => <SupplementCard key={i} {...s} />)}
+    </div>
+  )
+}
+
+// ── Main NutritionModal ───────────────────────────────────────────────────────
+export default function NutritionModal({ onClose, userEmail, profile }) {
+  const [dietasData, setDietasData] = useState(null)
+  const [selectedDieta, setSelectedDieta] = useState(null)
+  const [activeTab, setActiveTab] = useState('planes')
   const [configOpen, setConfigOpen] = useState(false)
   const [loading, setLoading] = useState(false)
-  const [planRaw, setPlanRaw] = useState(null)
-  const [planStructured, setPlanStructured] = useState(null)
   const [error, setError] = useState('')
+  const detailRef = useRef(null)
 
-  if (!approved) {
-    return <UpsellScreen onClose={onClose} />
-  }
+  const cacheKey = `nutrition_dietas_cache_${userEmail}`
 
-  const handleGenerate = async () => {
-    if (!form.age) {
-      setError('Ingresa tu edad para generar el plan.')
-      return
+  // Load cache on mount
+  useEffect(() => {
+    try {
+      const cached = localStorage.getItem(cacheKey)
+      if (cached) {
+        const parsed = JSON.parse(cached)
+        if (parsed && parsed.dietas && parsed.dietas.length > 0) {
+          setDietasData(parsed)
+        }
+      }
+    } catch (_) {}
+  }, [cacheKey])
+
+  // Scroll to detail when diet is selected
+  useEffect(() => {
+    if (selectedDieta && detailRef.current) {
+      setTimeout(() => {
+        detailRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      }, 100)
     }
+  }, [selectedDieta])
+
+  const handleGenerate = async ({ sex, age, country, activity, goal, restrictions }) => {
     setLoading(true)
     setError('')
-    setPlanRaw(null)
-    setPlanStructured(null)
+    setSelectedDieta(null)
 
-    const weight = profile?.weight || '—'
-    const height = profile?.height || '—'
-    const targetWeight = profile?.targetWeight || '—'
+    const prompt = `Eres un nutricionista experto. Crea exactamente 10 planes de dieta diferentes y completos para esta persona:
+- País: ${country} (usa EXCLUSIVAMENTE alimentos típicos, accesibles y económicos de ${country})
+- Objetivo: ${goal}
+- Sexo: ${sex}
+- Edad: ${age} años
+- Peso actual: ${profile?.weight || '?'}kg | Objetivo: ${profile?.targetWeight || '?'}kg
+- Altura: ${profile?.height || '?'}cm
+- Nivel de actividad: ${activity}
+- Restricciones: ${restrictions || 'ninguna'}
+
+Devuelve SOLO JSON válido con esta estructura exacta (sin texto adicional):
+{
+  "pais": "${country}",
+  "objetivo": "${goal}",
+  "dietas": [
+    {
+      "id": 1,
+      "nombre": "nombre creativo con ingrediente local",
+      "tipo": "Alta Proteína",
+      "emoji": "🥩",
+      "descripcion": "descripción breve de 1 línea",
+      "tags": ["Ganancia Muscular","Sin Gluten"],
+      "calorias": 2400,
+      "proteina": 200,
+      "carbos": 220,
+      "grasa": 75,
+      "agua_litros": 3.0,
+      "tmb": 1850,
+      "comidas": {
+        "desayuno": {"nombre":"...","descripcion":"...","kcal":600,"proteina_g":50,"carbos_g":55,"grasa_g":20,"ingredientes":["item1","item2","item3"]},
+        "merienda": {"nombre":"...","descripcion":"...","kcal":250,"proteina_g":25,"carbos_g":20,"grasa_g":8,"ingredientes":["item1","item2"]},
+        "almuerzo": {"nombre":"...","descripcion":"...","kcal":800,"proteina_g":65,"carbos_g":80,"grasa_g":25,"ingredientes":["item1","item2","item3","item4"]},
+        "cena": {"nombre":"...","descripcion":"...","kcal":550,"proteina_g":50,"carbos_g":45,"grasa_g":18,"ingredientes":["item1","item2","item3"]}
+      }
+    }
+  ]
+}
+
+Los 10 tipos DEBEN ser: Clásica Local, Alta Proteína, Bajo Carbohidrato, Cetogénica, Ayuno 16:8, Volumen Limpio, Definición, Mediterránea Adaptada, Vegetariana Local, Flexible IIFYM`
 
     try {
-      const prompt = `Eres un nutricionista deportivo experto en calistenia. Crea un plan nutricional completo y personalizado en español latinoamericano.
-
-Datos del operativo:
-- Peso actual: ${weight} kg
-- Altura: ${height} cm
-- Edad: ${form.age} años
-- Peso objetivo: ${targetWeight} kg
-- Restricciones/alergias: ${form.restrictions || 'ninguna'}
-
-Calcula TMB con fórmula Mifflin-St Jeor y ajusta calorías según objetivo (déficit si peso > objetivo, superávit leve si peso < objetivo).
-
-Retorna ÚNICAMENTE un objeto JSON con esta estructura exacta (sin markdown, sin texto extra, puro JSON):
-{
-  "calorias": 2100,
-  "proteina": 150,
-  "tmb": 1750.8,
-  "comidas": {
-    "desayuno": [
-      {
-        "nombre": "Nombre del plato",
-        "descripcion": "Descripción breve",
-        "ingredientes": ["ingrediente 1 con cantidad", "ingrediente 2 con cantidad"]
-      },
-      {
-        "nombre": "Segunda opción",
-        "descripcion": "Descripción breve",
-        "ingredientes": ["ingrediente 1 con cantidad"]
-      }
-    ],
-    "almuerzo": [
-      { "nombre": "...", "descripcion": "...", "ingredientes": ["..."] },
-      { "nombre": "...", "descripcion": "...", "ingredientes": ["..."] }
-    ],
-    "cena": [
-      { "nombre": "...", "descripcion": "...", "ingredientes": ["..."] },
-      { "nombre": "...", "descripcion": "...", "ingredientes": ["..."] }
-    ]
-  }
-}`
-
-      const response = await fetch(
+      const res = await fetch(
         `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent?key=${GEMINI_API_KEY}`,
         {
           method: 'POST',
@@ -809,243 +736,251 @@ Retorna ÚNICAMENTE un objeto JSON con esta estructura exacta (sin markdown, sin
           body: JSON.stringify({
             contents: [{ parts: [{ text: prompt }] }],
             generationConfig: {
-              temperature: 0.7,
-              maxOutputTokens: 2048,
-            },
-          }),
+              maxOutputTokens: 8000,
+              temperature: 0.7
+            }
+          })
         }
       )
 
-      const data = await response.json()
-      const text = data.candidates?.[0]?.content?.parts?.[0]?.text
+      if (!res.ok) throw new Error(`API error: ${res.status}`)
+      const data = await res.json()
+      const rawText = data.candidates?.[0]?.content?.parts?.[0]?.text || ''
 
-      if (!text) {
-        setError('Error al generar el plan. Intenta de nuevo.')
-        setLoading(false)
-        return
+      // Extract JSON from response
+      let jsonStr = rawText.trim()
+      const startIdx = jsonStr.indexOf('{')
+      const endIdx = jsonStr.lastIndexOf('}')
+      if (startIdx !== -1 && endIdx !== -1) {
+        jsonStr = jsonStr.slice(startIdx, endIdx + 1)
       }
 
-      // Try to parse as JSON
+      let parsed
       try {
-        // Strip markdown code fences if present
-        const cleaned = text.replace(/```json\s*/gi, '').replace(/```\s*/g, '').trim()
-        const parsed = JSON.parse(cleaned)
-        setPlanStructured(parsed)
-      } catch {
-        // Fallback to raw text display
-        setPlanRaw(text)
+        parsed = JSON.parse(jsonStr)
+      } catch (parseErr) {
+        throw new Error('No se pudo parsear el JSON de la IA. Intenta de nuevo.')
       }
 
+      if (!parsed.dietas || !Array.isArray(parsed.dietas) || parsed.dietas.length === 0) {
+        throw new Error('La respuesta no contiene dietas válidas. Intenta de nuevo.')
+      }
+
+      setDietasData(parsed)
+      try {
+        localStorage.setItem(cacheKey, JSON.stringify(parsed))
+      } catch (_) {}
       setConfigOpen(false)
     } catch (err) {
-      setError('Error de conexión. Verifica tu internet.')
+      setError(err.message || 'Error al generar planes. Intenta de nuevo.')
+    } finally {
+      setLoading(false)
     }
-    setLoading(false)
   }
 
+  const handleSelectDieta = (dieta) => {
+    setSelectedDieta(prev => prev?.id === dieta.id ? null : dieta)
+  }
+
+  const handleNuevo = () => {
+    setDietasData(null)
+    setSelectedDieta(null)
+    setError('')
+    try { localStorage.removeItem(cacheKey) } catch (_) {}
+    setConfigOpen(true)
+  }
+
+  const tabs = [
+    { key: 'planes',  label: '🗂 PLANES' },
+    { key: 'arsenal', label: '💊 ARSENAL' },
+    ...(selectedDieta ? [{ key: 'compras', label: '🛒 COMPRAS' }] : []),
+  ]
+
   return (
-    <div style={{
-      position: 'fixed',
-      inset: 0,
-      zIndex: 50,
-      backgroundColor: '#0F110F',
-      overflowY: 'auto',
-    }}>
-      {/* Header */}
+    <div style={{ position: 'fixed', inset: 0, zIndex: 50, backgroundColor: '#0F110F', overflowY: 'auto' }}>
+
+      {/* Sticky header */}
       <div style={{
-        position: 'sticky',
-        top: 0,
-        zIndex: 10,
+        position: 'sticky', top: 0, zIndex: 10,
         backgroundColor: '#151715',
         borderBottom: '1px solid #2A302A',
         padding: '12px 16px',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'space-between',
+        display: 'flex', alignItems: 'center', justifyContent: 'space-between'
       }}>
         <button
           onClick={onClose}
-          style={{
-            backgroundColor: 'transparent',
-            border: 'none',
-            color: '#8DA38D',
-            fontFamily: '"Share Tech Mono", monospace',
-            fontSize: '11px',
-            cursor: 'pointer',
-            letterSpacing: '1px',
-            padding: 0,
-          }}
-        >
-          ← VOLVER AL COMANDO
-        </button>
-        <div style={{
-          display: 'flex',
-          alignItems: 'center',
-          gap: '6px',
-        }}>
-          <span style={{ fontSize: '14px' }}>⊕</span>
-          <span style={{
-            fontFamily: '"Black Ops One", cursive',
-            fontSize: '14px',
-            color: '#8DA38D',
-            letterSpacing: '1px',
-          }}>
-            NUTRICIÓN TÁCTICA
-          </span>
+          style={{ backgroundColor: 'transparent', border: 'none', color: '#4B5E4B', fontFamily: '"Share Tech Mono", monospace', fontSize: '12px', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '6px' }}
+        >← VOLVER</button>
+
+        <div style={{ fontFamily: '"Black Ops One", cursive', fontSize: '14px', color: '#8DA38D', letterSpacing: '2px' }}>
+          🥗 NUTRICIÓN TÁCTICA
         </div>
-      </div>
-
-      <div style={{ padding: '20px', maxWidth: '600px', margin: '0 auto' }}>
-
-        {/* GENERAR DIETA button card */}
-        <div
-          onClick={() => setConfigOpen(true)}
-          style={{
-            backgroundColor: '#1A1D1A',
-            border: '1px solid #2A302A',
-            borderLeft: '4px solid #4B5E4B',
-            borderRadius: '10px',
-            padding: '16px 18px',
-            marginBottom: '20px',
-            cursor: 'pointer',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-            transition: 'background-color 0.2s',
-          }}
-        >
-          <div>
-            <div style={{
-              fontFamily: '"Share Tech Mono", monospace',
-              fontSize: '9px',
-              color: '#4B5E4B',
-              letterSpacing: '1px',
-              marginBottom: '6px',
-              display: 'flex',
-              alignItems: 'center',
-              gap: '6px',
-            }}>
-              <span style={{
-                width: '6px',
-                height: '6px',
-                borderRadius: '50%',
-                backgroundColor: '#4B5E4B',
-                display: 'inline-block',
-                animation: 'pulse-green 2s ease-in-out infinite',
-              }} />
-              IA ACTIVA // CLICK AQUÍ
-            </div>
-            <div style={{
-              fontFamily: '"Black Ops One", cursive',
-              fontSize: '18px',
-              color: '#ffffff',
-              letterSpacing: '2px',
-            }}>
-              GENERAR DIETA
-            </div>
-          </div>
-          <div style={{
-            fontFamily: '"Black Ops One", cursive',
-            fontSize: '24px',
-            color: '#4B5E4B',
-          }}>
-            ›
-          </div>
-        </div>
-
-        {/* Separator */}
-        <div style={{
-          borderTop: '1px solid #2A302A',
-          marginBottom: '20px',
-        }} />
-
-        {/* Arsenal section */}
-        <div style={{
-          fontFamily: '"Black Ops One", cursive',
-          fontSize: '16px',
-          color: '#ffffff',
-          textAlign: 'center',
-          letterSpacing: '2px',
-          marginBottom: '16px',
-        }}>
-          ARSENAL SUPLEMENTARIO
-        </div>
-
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fill, minmax(160px, 1fr))',
-          gap: '12px',
-          marginBottom: '24px',
-        }}>
-          {SUPPLEMENTS.map((card) => (
-            <SupplementCard key={card.id} card={card} />
-          ))}
-        </div>
-
-        {/* Plan results */}
-        {planStructured && (
-          <div style={{ marginBottom: '24px' }}>
-            <div style={{
-              fontFamily: '"Share Tech Mono", monospace',
-              fontSize: '9px',
-              color: '#4B5E4B',
-              letterSpacing: '2px',
-              marginBottom: '14px',
-              textAlign: 'center',
-            }}>
-              // PLAN NUTRICIONAL GENERADO //
-            </div>
-            <StructuredPlan data={planStructured} />
-          </div>
-        )}
-
-        {planRaw && (
-          <div style={{ marginBottom: '24px' }}>
-            <FallbackPlan text={planRaw} />
-          </div>
-        )}
 
         <button
-          onClick={onClose}
+          onClick={dietasData ? handleNuevo : () => setConfigOpen(true)}
           style={{
-            width: '100%',
-            padding: '12px',
-            backgroundColor: 'transparent',
-            border: '1px solid #2A302A',
+            backgroundColor: '#4B5E4B',
+            border: 'none',
             borderRadius: '6px',
-            color: '#4B5E4B',
-            fontFamily: '"Share Tech Mono", monospace',
-            fontSize: '12px',
-            cursor: 'pointer',
-            marginBottom: '32px',
+            padding: '8px 12px',
+            color: '#fff',
+            fontFamily: '"Black Ops One", cursive',
+            fontSize: '10px',
+            letterSpacing: '1px',
+            cursor: 'pointer'
           }}
-        >
-          ← VOLVER AL CUARTEL
-        </button>
+        >{dietasData ? 'NUEVO' : 'GENERAR'}</button>
       </div>
 
-      {/* Config modal overlay */}
-      {configOpen && (
-        <ConfigModal
-          profile={profile}
-          form={form}
-          setForm={setForm}
-          onClose={() => { setConfigOpen(false); setError('') }}
-          onGenerate={handleGenerate}
-          loading={loading}
-          error={error}
-        />
-      )}
+      {/* Tab bar */}
+      <div style={{
+        position: 'sticky', top: 57, zIndex: 9,
+        backgroundColor: '#0F110F',
+        borderBottom: '1px solid #2A302A',
+        display: 'flex'
+      }}>
+        {tabs.map(tab => (
+          <button
+            key={tab.key}
+            onClick={() => setActiveTab(tab.key)}
+            style={{
+              flex: 1,
+              padding: '12px 8px',
+              backgroundColor: 'transparent',
+              border: 'none',
+              borderBottom: activeTab === tab.key ? '2px solid #4ade80' : '2px solid transparent',
+              color: activeTab === tab.key ? '#4ade80' : '#4B5E4B',
+              fontFamily: '"Share Tech Mono", monospace',
+              fontSize: '10px',
+              letterSpacing: '1px',
+              cursor: 'pointer',
+              transition: 'all 0.2s'
+            }}
+          >{tab.label}</button>
+        ))}
+      </div>
 
-      <style>{`
-        @keyframes spin {
-          to { transform: rotate(360deg); }
-        }
-        @keyframes pulse-green {
-          0%, 100% { opacity: 0.4; }
-          50% { opacity: 1; }
-        }
-      `}</style>
+      {/* Content */}
+      <div style={{ maxWidth: '700px', margin: '0 auto', padding: '16px' }}>
+
+        {/* Error */}
+        {error && (
+          <div style={{ backgroundColor: '#2a1a1a', border: '1px solid #ef4444', borderRadius: '10px', padding: '16px', marginBottom: '16px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '12px' }}>
+            <div style={{ fontFamily: '"Share Tech Mono", monospace', fontSize: '11px', color: '#ef4444', lineHeight: 1.5 }}>⚠ {error}</div>
+            <button
+              onClick={() => { setError(''); setConfigOpen(true) }}
+              style={{ backgroundColor: '#ef4444', border: 'none', borderRadius: '6px', padding: '8px 12px', color: '#fff', fontFamily: '"Black Ops One", cursive', fontSize: '10px', cursor: 'pointer', flexShrink: 0 }}
+            >REINTENTAR</button>
+          </div>
+        )}
+
+        {/* PLANES TAB */}
+        {activeTab === 'planes' && (
+          <div>
+            {!dietasData ? (
+              /* Generate card */
+              <div style={{
+                backgroundColor: '#1A1D1A',
+                border: '1px solid #2A302A',
+                borderRadius: '14px',
+                padding: '32px 20px',
+                textAlign: 'center',
+                position: 'relative',
+                overflow: 'hidden',
+                marginBottom: '16px'
+              }}>
+                <div style={{ position: 'absolute', inset: 0, background: 'radial-gradient(circle at 50% 30%, rgba(75,94,75,0.10) 0%, transparent 70%)', pointerEvents: 'none' }} />
+                <div style={{ fontSize: '56px', marginBottom: '12px' }}>🥗</div>
+                <div style={{ fontFamily: '"Black Ops One", cursive', fontSize: '22px', color: '#fff', marginBottom: '8px' }}>10 PLANES DE DIETA</div>
+                <div style={{ fontFamily: '"Share Tech Mono", monospace', fontSize: '11px', color: '#8DA38D', lineHeight: 1.6, marginBottom: '20px' }}>
+                  10 planes completos adaptados a tu país y objetivo, con lista de compras incluida.
+                </div>
+                <button
+                  onClick={() => setConfigOpen(true)}
+                  style={{
+                    padding: '14px 32px',
+                    backgroundColor: '#4B5E4B',
+                    border: 'none',
+                    borderRadius: '8px',
+                    color: '#fff',
+                    fontFamily: '"Black Ops One", cursive',
+                    fontSize: '16px',
+                    letterSpacing: '2px',
+                    cursor: 'pointer'
+                  }}
+                >⚡ GENERAR PLANES</button>
+              </div>
+            ) : (
+              <div>
+                {/* Header info */}
+                <div style={{ backgroundColor: '#1A1D1A', border: '1px solid #2A302A', borderRadius: '10px', padding: '12px 16px', marginBottom: '14px', display: 'flex', alignItems: 'center', gap: '10px' }}>
+                  <span style={{ fontSize: '20px' }}>{COUNTRY_FLAGS[dietasData.pais] || '🌎'}</span>
+                  <div>
+                    <div style={{ fontFamily: '"Black Ops One", cursive', fontSize: '13px', color: '#fff' }}>{dietasData.pais} — {dietasData.objetivo}</div>
+                    <div style={{ fontFamily: '"Share Tech Mono", monospace', fontSize: '9px', color: '#4B5E4B', letterSpacing: '1px', marginTop: '2px' }}>SELECCIONA UN PLAN PARA VER DETALLE</div>
+                  </div>
+                </div>
+
+                {/* 10 diet cards */}
+                {dietasData.dietas.map(dieta => (
+                  <DietCard
+                    key={dieta.id}
+                    dieta={dieta}
+                    selected={selectedDieta?.id === dieta.id}
+                    onSelect={handleSelectDieta}
+                  />
+                ))}
+
+                {/* Selected diet detail */}
+                {selectedDieta && (
+                  <div ref={detailRef} style={{ marginTop: '20px' }}>
+                    <div style={{ fontFamily: '"Share Tech Mono", monospace', fontSize: '9px', color: '#4B5E4B', letterSpacing: '3px', marginBottom: '12px', textAlign: 'center' }}>// DETALLE DEL PLAN SELECCIONADO //</div>
+                    <HeroStats dieta={selectedDieta} />
+                    {MEAL_ORDER.map(mealKey => {
+                      const meal = selectedDieta.comidas?.[mealKey]
+                      if (!meal) return null
+                      return <MealSection key={mealKey} mealKey={mealKey} meal={meal} />
+                    })}
+                  </div>
+                )}
+              </div>
+            )}
+          </div>
+        )}
+
+        {/* ARSENAL TAB */}
+        {activeTab === 'arsenal' && <ArsenalTab />}
+
+        {/* COMPRAS TAB */}
+        {activeTab === 'compras' && selectedDieta && (
+          <ShoppingList dieta={selectedDieta} />
+        )}
+
+      </div>
+
+      {/* Config modal */}
+      <ConfigModal
+        open={configOpen}
+        onClose={() => setConfigOpen(false)}
+        onSubmit={handleGenerate}
+        profile={profile}
+        loading={loading}
+      />
+
+      {/* Loading overlay */}
+      {loading && (
+        <div style={{
+          position: 'fixed', inset: 0, zIndex: 300,
+          backgroundColor: 'rgba(15,17,15,0.92)',
+          display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
+          gap: '20px'
+        }}>
+          <div className="pulse-green" style={{ width: 60, height: 60, borderRadius: '50%', backgroundColor: '#4B5E4B', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '28px' }}>🥗</div>
+          <div style={{ fontFamily: '"Black Ops One", cursive', fontSize: '18px', color: '#fff', letterSpacing: '3px' }}>GENERANDO PLANES</div>
+          <div style={{ fontFamily: '"Share Tech Mono", monospace', fontSize: '11px', color: '#4B5E4B', letterSpacing: '2px' }}>Calculando 10 dietas personalizadas...</div>
+          <div style={{ fontFamily: '"Share Tech Mono", monospace', fontSize: '10px', color: '#4B5E4B' }}>Puede tardar 15-30 segundos</div>
+        </div>
+      )}
     </div>
   )
 }

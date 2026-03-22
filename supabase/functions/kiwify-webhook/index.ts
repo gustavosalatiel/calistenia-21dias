@@ -5,32 +5,30 @@ const WEBHOOK_TOKEN = Deno.env.get('KIWIFY_WEBHOOK_TOKEN') ?? ''
 const SUPABASE_URL = Deno.env.get('SUPABASE_URL') ?? ''
 const SUPABASE_SERVICE_KEY = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY') ?? ''
 
-// Product ID → access flags mapping (configure via env or hardcode)
-// Format: PRODUCT_ID:nutrition,sleep,presidential
-// Example: "PRD_ABC123:nutrition,sleep,presidential"
-function getProductFlags(productId: string): Record<string, boolean> {
+// KIWIFY_PRODUCT_MAP format: "PRODUCT_ID:flag1,flag2|PRODUCT_ID2:flag3"
+// Flags: platform, nutrition, sleep, presidential
+// "platform" = produto principal → apenas libera acesso base (insere na tabela)
+function getProductInfo(productId: string): { known: boolean; flags: Partial<Record<string, boolean>> } {
   const raw = Deno.env.get('KIWIFY_PRODUCT_MAP') ?? ''
   if (raw && productId) {
     for (const entry of raw.split('|')) {
       const colonIdx = entry.indexOf(':')
-      if (colonIdx === -1) continue // entrada mal formatada — ignora
+      if (colonIdx === -1) continue
       const id = entry.substring(0, colonIdx).trim()
-      const flags = entry.substring(colonIdx + 1).trim()
+      const flagStr = entry.substring(colonIdx + 1).trim()
       if (id === productId.trim()) {
         return {
-          nutrition_approved: flags.includes('nutrition'),
-          sleep_approved: flags.includes('sleep'),
-          presidential_approved: flags.includes('presidential'),
+          known: true,
+          flags: {
+            nutrition_approved: flagStr.includes('nutrition'),
+            sleep_approved: flagStr.includes('sleep'),
+            presidential_approved: flagStr.includes('presidential'),
+          },
         }
       }
     }
   }
-  // Default: libera tudo (produto não encontrado no mapa ou mapa vazio)
-  return {
-    nutrition_approved: true,
-    sleep_approved: true,
-    presidential_approved: true,
-  }
+  return { known: false, flags: {} }
 }
 
 const APPROVED_EVENTS = new Set([
@@ -48,19 +46,15 @@ serve(async (req: Request) => {
   if (req.method === 'OPTIONS') {
     return new Response('ok', { headers: { 'Access-Control-Allow-Origin': '*' } })
   }
-
   if (req.method !== 'POST') {
     return new Response('Method Not Allowed', { status: 405 })
   }
 
   let body: any
-  try {
-    body = await req.json()
-  } catch {
-    return new Response('Invalid JSON', { status: 400 })
-  }
+  try { body = await req.json() }
+  catch { return new Response('Invalid JSON', { status: 400 }) }
 
-  console.log('[kiwify-webhook] Received:', JSON.stringify(body, null, 2))
+  console.log('[kiwify-webhook] Event:', body.event, '| Product:', body.data?.product?.id)
 
   // Token validation
   if (WEBHOOK_TOKEN) {
@@ -73,60 +67,70 @@ serve(async (req: Request) => {
 
   const event: string = body.event ?? ''
   const buyerEmail: string = (
-    body.data?.buyer?.email ??
-    body.buyer_email ??
-    body.email ??
-    ''
+    body.data?.buyer?.email ?? body.buyer_email ?? body.email ?? ''
   ).toLowerCase().trim()
   const productId: string = body.data?.product?.id ?? body.product_id ?? ''
 
   if (!buyerEmail) {
-    console.error('[kiwify-webhook] Missing buyer email')
     return new Response(JSON.stringify({ error: 'Missing buyer email' }), {
-      status: 400,
-      headers: { 'Content-Type': 'application/json' },
+      status: 400, headers: { 'Content-Type': 'application/json' },
     })
   }
 
   const supabase = createClient(SUPABASE_URL, SUPABASE_SERVICE_KEY)
 
-  // APPROVED: add user
+  // ── APROVADO ──────────────────────────────────────────
   if (APPROVED_EVENTS.has(event)) {
-    const flags = getProductFlags(productId)
-    console.log(`[kiwify-webhook] Approving ${buyerEmail} with flags:`, flags)
+    const { known, flags } = getProductInfo(productId)
 
-    const { error } = await supabase
-      .from('app_approved')
-      .upsert(
-        { email: buyerEmail, ...flags },
-        { onConflict: 'email', ignoreDuplicates: false }
-      )
-
-    if (error) {
-      console.error('[kiwify-webhook] DB error:', error)
-      return new Response(JSON.stringify({ error: error.message }), {
-        status: 500,
-        headers: { 'Content-Type': 'application/json' },
+    if (!known) {
+      console.log(`[kiwify-webhook] Product ${productId} not in map — ignoring`)
+      return new Response(JSON.stringify({ received: true, event }), {
+        status: 200, headers: { 'Content-Type': 'application/json' },
       })
     }
 
+    // Verifica se já existe registro para esse email
+    const { data: existing } = await supabase
+      .from('app_approved')
+      .select('*')
+      .eq('email', buyerEmail)
+      .single()
+
+    if (existing) {
+      // Atualiza somente os campos que devem ser ativados (não apaga outros)
+      const updateFields: Record<string, boolean> = {}
+      for (const [k, v] of Object.entries(flags)) {
+        if (v) updateFields[k] = true
+      }
+      if (Object.keys(updateFields).length > 0) {
+        await supabase.from('app_approved').update(updateFields).eq('email', buyerEmail)
+      }
+    } else {
+      // Novo registro — produto principal: acesso base sem módulos extras
+      await supabase.from('app_approved').insert({
+        email: buyerEmail,
+        nutrition_approved: flags.nutrition_approved ?? false,
+        sleep_approved: flags.sleep_approved ?? false,
+        presidential_approved: flags.presidential_approved ?? false,
+      })
+    }
+
+    console.log(`[kiwify-webhook] ✅ Access granted: ${buyerEmail}`, flags)
     return new Response(
       JSON.stringify({ success: true, action: 'approved', email: buyerEmail, flags }),
       { status: 200, headers: { 'Content-Type': 'application/json' } }
     )
   }
 
-  // REVOKED: remove user
+  // ── REVOGADO ──────────────────────────────────────────
   if (REVOKE_EVENTS.has(event)) {
-    console.log(`[kiwify-webhook] Revoking ${buyerEmail} due to: ${event}`)
+    const { known } = getProductInfo(productId)
 
-    const { error } = await supabase
-      .from('app_approved')
-      .delete()
-      .eq('email', buyerEmail)
-
-    if (error) {
-      console.error('[kiwify-webhook] DB error on revoke:', error)
+    // Só remove totalmente se for o produto principal
+    if (known) {
+      await supabase.from('app_approved').delete().eq('email', buyerEmail)
+      console.log(`[kiwify-webhook] ❌ Access revoked: ${buyerEmail}`)
     }
 
     return new Response(
@@ -135,8 +139,6 @@ serve(async (req: Request) => {
     )
   }
 
-  // Unhandled event — still return 200 so Kiwify doesn't retry
-  console.log(`[kiwify-webhook] Unhandled event: ${event}`)
   return new Response(
     JSON.stringify({ received: true, event }),
     { status: 200, headers: { 'Content-Type': 'application/json' } }
